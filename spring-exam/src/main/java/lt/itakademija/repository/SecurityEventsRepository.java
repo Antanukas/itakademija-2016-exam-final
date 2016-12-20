@@ -21,6 +21,14 @@ public interface SecurityEventsRepository {
     List<RegisteredEvent> getEvents();
 
     /**
+     * Returns registered event.
+     * 
+     * @param eventId
+     * @return registered event
+     */
+    RegisteredEvent getEventById(Long eventId);
+    
+    /**
      * Creates registered event.
      *
      * @param eventRegistration event data
