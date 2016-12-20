@@ -2,6 +2,8 @@ package lt.itakademija.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +44,7 @@ public class SecurityServiceController {
 
     @PostMapping("webapi/events")
     @ResponseStatus(HttpStatus.CREATED)
-    public RegisteredEvent createEvent(@RequestBody EventRegistration registrationData) {
+    public RegisteredEvent createEvent(@Valid @RequestBody EventRegistration registrationData) {
         return repository.create(registrationData);
     }
 
@@ -54,7 +56,7 @@ public class SecurityServiceController {
 
     @PutMapping("webapi/events/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public RegisteredEvent updateEvent(@PathVariable Long id, RegisteredEventUpdate updateData) {
+    public RegisteredEvent updateEvent(@PathVariable Long id, @Valid @RequestBody RegisteredEventUpdate updateData) {
         return repository.update(id, updateData);
     }
 
