@@ -26,7 +26,7 @@ public class LibraryReader {
     @OneToMany(cascade = CascadeType.ALL)
     private List<LibraryReaderAddress> addresses;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Book> borrowedBooks;
 
     public Long getId() {
@@ -74,6 +74,7 @@ public class LibraryReader {
 
     public void addBorrowedBook(Book b) {
         //throw new UnsupportedOperationException();
+    	b.getBookReaders().add(this);
     	this.getBorrowedBooks().add(b);
     }
 }
