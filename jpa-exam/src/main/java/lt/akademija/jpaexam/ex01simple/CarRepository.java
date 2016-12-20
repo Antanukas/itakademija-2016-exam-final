@@ -11,9 +11,14 @@ public class CarRepository {
      * Searches database for all cars and returns list of them
      * @return
      */
+	
+	@Autowired
+	private EntityManager em;
 
     public List<CarEntity> findAll() {
         throw new UnsupportedOperationException();
+        return em.createQuery("SELECT c FROM CarEntity c").getResultList();
+
     }
 
     /**
@@ -22,6 +27,7 @@ public class CarRepository {
      */
     public CarEntity find(Long id) {
         throw new UnsupportedOperationException();
+        return em.find(CarEntity.class, id);
     }
 
     /**
@@ -30,5 +36,15 @@ public class CarRepository {
      */
     public CarEntity saveOrUpdate(CarEntity e) {
         throw new UnsupportedOperationException();
+        CarEntity car;
+        if(e.getId() == null) {
+        	em.persist(e);
+        	car = e;
+        } else {
+        	CarEntity merged = em.merge(e);
+        	em.persist(e);
+        	car = merged;
+        }
+        return car;
     }
 }
