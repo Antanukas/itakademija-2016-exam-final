@@ -25,7 +25,6 @@ import io.swagger.annotations.ApiParam;
 
 @RestController
 @Api
-@RequestMapping(value = "/webapi/events")
 public class SecurityServiceController {
 
 	private final SecurityEventsRepository repository;
@@ -43,7 +42,7 @@ public class SecurityServiceController {
 		// throw new UnsupportedOperationException("not implemented");
 	}
 
-	@RequestMapping(path = "/api/events", method = RequestMethod.POST)
+	@RequestMapping(path = "/webapi/events", method = RequestMethod.POST)
 	@ApiOperation(value = "Create Eevents")
 	@ResponseStatus(HttpStatus.CREATED)
 	public RegisteredEvent createEvent(
@@ -52,7 +51,7 @@ public class SecurityServiceController {
 		// throw new UnsupportedOperationException("not implemented");
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(path = "/webapi/events/{id}", method = RequestMethod.DELETE)
 	@ApiOperation(value = "Delete Event by ID")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public RegisteredEvent deleteEvent(@ApiParam(value = "Event ID", required = true) @PathVariable Long id) {
@@ -60,7 +59,7 @@ public class SecurityServiceController {
 		return repository.delete(id);
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(path = "/webapi/events/{id}", method = RequestMethod.PUT)
 	@ApiOperation(value = "Update event")
 	@ResponseStatus(HttpStatus.OK)
 	public RegisteredEvent updateEvent(@ApiParam(value = "Event ID", required = true) @PathVariable Long id,

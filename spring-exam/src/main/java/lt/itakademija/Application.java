@@ -22,14 +22,14 @@ public class Application extends SpringBootServletInitializer {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(appinfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("lt.itakademija"))
+				.apis(RequestHandlerSelectors.basePackage("INFOBALT IT Akademija"))
 				.build();
 		
 	}
 	
 	private ApiInfo appinfo(){
 		return new ApiInfoBuilder()
-				.title("IT Akademija Rest Documentacija")
+				.title("IT Akademija REST webapp Dokumentacija")
 				.version("0.0.1-SNAPSHOT").build();
 		
 	}
