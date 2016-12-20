@@ -2,10 +2,22 @@ package lt.akademija.jpaexam.ex01simple;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.sql.ordering.antlr.GeneratedOrderByFragmentRendererTokenTypes;
+
+@Entity
 public class CarEntity {
 
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)    
+	private Long id;
+	
     private String model;
+    
     private Date manufactureDate;
 
     public Long getId() {

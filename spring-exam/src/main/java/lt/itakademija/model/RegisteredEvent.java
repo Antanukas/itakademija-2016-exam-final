@@ -22,7 +22,7 @@ public final class RegisteredEvent {
 	@NotNull
 	private String description;
 
-	@NotNull
+	
 	public RegisteredEvent() {
 	}
 

@@ -72,12 +72,14 @@ public class Ex02Test {
             addressVilnius.setCity("Vilnius");
             addressVilnius.setStreet("Zirmunu 123");
             addressVilnius.setZipcode("123345");
+         //   addressVilnius.setLibraryReader(r);
             r.getAddresses().add(addressVilnius);
 
             LibraryReaderAddress addressKaunas = new LibraryReaderAddress();
             addressKaunas.setCity("Kaunas");
             addressKaunas.setStreet("Laisves al. 123");
             addressKaunas.setZipcode("123345");
+         //   addressVilnius.setLibraryReader(r);
             r.getAddresses().add(addressKaunas);
 
             LibraryReader saved = libraryReaderRepository.saveOrUpdate(r);

@@ -4,15 +4,21 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
+
 public final class EventRegistration {
 
 	@NotNull
 	private SeverityLevel severityLevel;
 
-	@NotNull
+	@NotBlank
+	@Length(max=100)
 	private String location;
 
-	@NotNull
+	@Length(max=1000)
+	@NotBlank
 	private String description;
 
 	public SeverityLevel getSeverityLevel() {

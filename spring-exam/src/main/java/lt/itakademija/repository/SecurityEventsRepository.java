@@ -15,7 +15,7 @@ import lt.itakademija.model.RegisteredEventUpdate;
  * @author mariusg
  */
 
-@Component
+@Repository
 public interface SecurityEventsRepository {
 
     /**
