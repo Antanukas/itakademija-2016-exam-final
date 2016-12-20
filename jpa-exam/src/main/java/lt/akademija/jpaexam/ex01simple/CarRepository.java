@@ -30,34 +30,21 @@ public class CarRepository {
      * If car is not present `null` is returned.
      */
     public CarEntity find(Long id) {
-        //throw new UnsupportedOperationException();
-    	Query q = em.createQuery("SELECT p FROM CarEntity p WHERE p.id = :id");
+        throw new UnsupportedOperationException();
+    	/*Query q = em.createQuery("SELECT p FROM CarEntity p WHERE p.id = :id");
         q.setParameter("id", id);
-        return q.getResultList();
+        return q.getResultList();*/
     	
     }
-    public CarEntity find(Long id) {
-        //throw new UnsupportedOperationException();
-    	Query q = em.createQuery("SELECT p FROM CarEntity p WHERE p.id = :id");
-        q.setParameter("id", id);
-        return (CarEntity) q.getResultList();
-    	
-    }
+    
 
-    public CarEntity find(Long id) {
-        //throw new UnsupportedOperationException();
-    	Query q = em.createQuery("SELECT p FROM CarEntity p WHERE p.id = :id");
-        q.setParameter("id", id);
-        return q.getResultList();
-    	
-    }
 
     /**
      * Saves or updates car information. When car with existing ID is passed then update operation is performed.
      * When id is not present new car is saved to database
      */
     public CarEntity saveOrUpdate(CarEntity e) {
-        //throw new UnsupportedOperationException();
+        //throw new Unsuppmvn clean spring-boot:runortedOperationException();
     	if (e.getId() == null) {
 			em.persist(e);
 			return e;
@@ -67,6 +54,8 @@ public class CarRepository {
 			return merged;
 		}
     }
+    
+   
     
     
 }

@@ -73,4 +73,11 @@ public final class RegisteredEvent {
                 + severityLevel + ", location=" + location + ", description=" + description + "]";
     }
 
+    
+    
+    
+	public void setSeverityLevel(SeverityLevel severityLevel) {
+		this.severityLevel = severityLevel;		
+	}
+
 }

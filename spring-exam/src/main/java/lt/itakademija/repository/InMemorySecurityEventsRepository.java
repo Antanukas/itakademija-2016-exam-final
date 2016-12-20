@@ -7,12 +7,15 @@ import lt.itakademija.model.RegisteredEventUpdate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * In-memory security events repository. Internally, it uses
  * {@link SequenceNumberGenerator} and {@link DateProvider}.
  *
  * Created by mariusg on 2016.12.19.
  */
+@Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
 
 	private final SequenceNumberGenerator sequenceGenerator;
@@ -34,8 +37,8 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 	 */
 	@Override
 	public RegisteredEvent create(EventRegistration eventRegistration) {
-		RegisteredEvent newRegisteredEvent = new RegisteredEvent(sequenceGenerator.getNext(), dateProvider.getCurrentDate(),
-				eventRegistration.getSeverityLevel(), eventRegistration.getLocation(),
+		RegisteredEvent newRegisteredEvent = new RegisteredEvent(sequenceGenerator.getNext(),
+				dateProvider.getCurrentDate(), eventRegistration.getSeverityLevel(), eventRegistration.getLocation(),
 				eventRegistration.getDescription());
 		this.eventsList.add(newRegisteredEvent);
 		return newRegisteredEvent;
@@ -55,13 +58,19 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 				eventsList.remove(i);
 			}
 		}
-		return delete;				
+		return delete;
 	}
 
 	@Override
 	public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
-
-		throw new UnsupportedOperationException("not implemented");
+		int newId = 0;
+		for (int i = 0; i < eventsList.size(); i++) {
+			if (eventsList.get(i).getId() == id) {
+				eventsList.get(i).setSeverityLevel(registeredEventUpdate.getSeverityLevel());
+				newId = i;
+			}
+		}
+		return eventsList.get(newId);
 	}
 
 }
