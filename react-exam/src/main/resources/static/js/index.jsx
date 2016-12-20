@@ -8,6 +8,21 @@ var App = React.createClass({
   }
 });
 
+var SomePageComponent = function( props ) {
+    var goRoot = function( e ) {
+        props.router.push( "/" );
+    }
+    return (
+        <div>
+            At route: {props.router.getCurrentLocation().pathname}
+            <button onClick={goRoot}>Go to Root route</button>
+            <pre>
+                {JSON.stringify( props, null, 2 )}
+            </pre>
+        </div>
+    );
+};
+
 var NoMatch = React.createClass({
   render: function() {
     return <div>Route did not match</div>;
