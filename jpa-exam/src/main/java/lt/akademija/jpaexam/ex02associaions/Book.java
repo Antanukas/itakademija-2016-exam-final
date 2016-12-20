@@ -21,8 +21,8 @@ public class Book {
 	@Column
     private String author;
 
-	@ManyToMany
-    private List<LibraryReader> bookReaders = new ArrayList<LibraryReader>();
+	@ManyToMany(mappedBy = "borrowedBooks")
+    private List<LibraryReader> bookReaders;
 
     public Long getId() {
         return id;
