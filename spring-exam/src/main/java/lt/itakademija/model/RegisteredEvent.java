@@ -50,6 +50,17 @@ public final class RegisteredEvent {
         return description;
     }
 
+    /**
+     * a.urbelis
+     * setSeverityLevel
+     * <p> 
+     * method to update InMemorySecurityEventsRepository update method
+     * @param takes SeverityLevel object
+     */
+    public void setSeverityLevel(SeverityLevel severityLevel) {
+    	this.severityLevel = severityLevel;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
