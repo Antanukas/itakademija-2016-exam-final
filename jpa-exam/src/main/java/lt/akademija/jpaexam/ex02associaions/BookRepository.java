@@ -25,7 +25,8 @@ public class BookRepository {
         return e;
 		//throw new UnsupportedOperationException();
     }
-
+	
+	@Transactional // nebutina
     public Book find(Long bookId) {
     	Query query = entityManager.createQuery("SELECT b FROM Book b WHERE b.id = : bookId");
     	query.setParameter("bookId", bookId);

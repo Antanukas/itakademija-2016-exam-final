@@ -26,6 +26,7 @@ public class LibraryReaderRepository {
         //throw new UnsupportedOperationException();
     }
 	
+	@Transactional // nebutina
     public LibraryReader find(Long id) {
     	Query query = entityManager.createQuery("SELECT r FROM LibraryReader r WHERE r.id = : readerId");
     	query.setParameter("readerId", id);

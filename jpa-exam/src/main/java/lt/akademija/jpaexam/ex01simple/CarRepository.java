@@ -34,7 +34,7 @@ public class CarRepository {
      * Given particular ID of a car searches database and retrieves car information.
      * If car is not present `null` is returned.
      */
-	//@Transactional
+	@Transactional
 	public CarEntity find(Long id) {
     	Query query = entityManager.createQuery("SELECT c FROM CarEntity c WHERE c.id = :carId");
     	query.setParameter("carId", id);
