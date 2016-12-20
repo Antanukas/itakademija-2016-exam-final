@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class LibraryReaderRepository {
 	
 	@Autowired
-	EntityManager entityManager;
+	private EntityManager entityManager;
 	
 	@Transactional
     public LibraryReader saveOrUpdate(LibraryReader e) {
