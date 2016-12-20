@@ -22,7 +22,7 @@ var NewBookContainer = React.createClass({
 			});
 	},
 	handleCancelCreate: function() {
-		this.props.router.goBack();
+		this.context.router.goBack();
 	},
 	handleTitleChange: function(event) {
 		this.setState({ title: event.target.value });
