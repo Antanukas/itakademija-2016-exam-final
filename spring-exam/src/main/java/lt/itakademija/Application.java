@@ -24,7 +24,7 @@ public class Application extends SpringBootServletInitializer {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("IT Akademija REST Documentation").version("0.0.1-SNAPSHOT").build();
+        return new ApiInfoBuilder().title("Security Service REST Documentation").version("0.0.1-SNAPSHOT").build();
     }
 
     @Override
