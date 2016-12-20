@@ -45,4 +45,6 @@ public interface SecurityEventsRepository {
      */
     RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate);
 
+    RegisteredEvent getEvent(Long id);
+
 }
