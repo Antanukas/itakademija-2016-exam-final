@@ -2,7 +2,7 @@
 var HelloWorldComponent = React.createClass({
   render: function() {
     return (
-      <div>Hello from React component</div>
+      <div>Hello!!! from React component</div>
     );
   }
 });

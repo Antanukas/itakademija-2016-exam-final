@@ -28,7 +28,7 @@ public class Library {
      * Readers are people registered to particular library.
      */
     @ManyToMany
-    private List<LibraryReader> readers = new ArrayList<LibraryReader>();
+    private List<LibraryReader> readers;
 
     /**
      * Holds all books that are available to borrow in this library
