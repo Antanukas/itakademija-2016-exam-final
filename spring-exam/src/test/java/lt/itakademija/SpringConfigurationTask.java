@@ -52,7 +52,7 @@ public class SpringConfigurationTask {
             assertSpringBeanExists(DateProvider.class);
         });
     }
-
+    
     private void assertSpringBeanExists(Class<?> beanClass) {
         Assert.assertThat(applicationContext.getBean(beanClass), notNullValue());
     }

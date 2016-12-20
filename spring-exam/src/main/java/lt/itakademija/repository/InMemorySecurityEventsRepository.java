@@ -13,6 +13,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,6 +22,8 @@ import org.springframework.stereotype.Repository;
  *
  * Created by mariusg on 2016.12.19.
  */
+//@Component
+@Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
 
     private final SequenceNumberGenerator sequenceGenerator;
