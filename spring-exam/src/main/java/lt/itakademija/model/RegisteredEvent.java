@@ -3,6 +3,8 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import org.springframework.stereotype.Component;
+@Component // 2nd task's addon
 public final class RegisteredEvent {
 
     private Long id;

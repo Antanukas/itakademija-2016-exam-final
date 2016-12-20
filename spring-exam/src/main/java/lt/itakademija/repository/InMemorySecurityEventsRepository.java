@@ -1,26 +1,33 @@
 package lt.itakademija.repository;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
 import lt.itakademija.model.SeverityLevel;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * In-memory security events repository. Internally, it uses {@link SequenceNumberGenerator} and {@link DateProvider}.
  *
  * Created by mariusg on 2016.12.19.
  */
+@Component
+@Repository // 2nd task's addition
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
-
+	@Autowired // 2nd task's addition
     private final SequenceNumberGenerator sequenceGenerator;
-
+	@Autowired // 2nd task's addition
     private final DateProvider dateProvider;
     
     // MANO LISTAS
+	@Autowired // 2nd task's addition
     List<RegisteredEvent> eventList = new ArrayList<RegisteredEvent>();
 
     public InMemorySecurityEventsRepository(SequenceNumberGenerator sequenceGenerator, DateProvider dateProvider) {
