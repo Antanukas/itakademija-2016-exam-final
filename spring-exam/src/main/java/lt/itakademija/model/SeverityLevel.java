@@ -5,6 +5,7 @@ package lt.itakademija.model;
  * 
  * @author mariusg
  */
+
 public enum SeverityLevel {
 
     LOW, NORMAL, HIGH;

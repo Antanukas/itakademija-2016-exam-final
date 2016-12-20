@@ -1,10 +1,14 @@
 package lt.itakademija.repository;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
 /**
  * Represents sequence number generator.
  * 
  * @author mariusg
  */
+@Component
 public interface SequenceNumberGenerator {
 
     /**
@@ -14,6 +18,7 @@ public interface SequenceNumberGenerator {
      *
      * @return next sequence number.
      */
+	
     Long getNext();
 
 }
