@@ -29,9 +29,10 @@ public class LibraryReader {
     @OneToOne(cascade = CascadeType.ALL)
     private List<LibraryReaderAddress> addresses;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    @ManyToMany(mappedBy = "bookReaders")
-    @JsonManagedReference
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@ManyToMany(mappedBy = "bookReaders")
+    @ManyToMany(cascade = CascadeType.ALL)
+    //@JsonManagedReference
     private List<Book> borrowedBooks;
 
     public Long getId() {

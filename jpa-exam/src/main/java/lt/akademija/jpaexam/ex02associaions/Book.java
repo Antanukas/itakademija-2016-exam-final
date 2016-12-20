@@ -19,7 +19,8 @@ public class Book {
     private String title;
     private String author;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    //@ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "borrowedBooks")
     private List<LibraryReader> bookReaders;
 
     public Long getId() {
