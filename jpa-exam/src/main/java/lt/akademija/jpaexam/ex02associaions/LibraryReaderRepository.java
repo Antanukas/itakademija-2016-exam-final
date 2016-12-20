@@ -15,6 +15,9 @@ public class LibraryReaderRepository {
 	@Transactional
 	public LibraryReader saveOrUpdate(LibraryReader e) {
 		// throw new UnsupportedOperationException();
+		if (e.getBorrowedBooks()!=null){
+			e.setBorrowedBooks(null);
+		};
 		if (e.getId() == null) {
 			em.persist(e);
 			return e;
