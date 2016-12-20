@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,7 @@ import lt.itakademija.model.RegisteredEventUpdate;
 import lt.itakademija.repository.SecurityEventsRepository;
 
 @RestController
+@RequestMapping(path="/webapi/events")
 public class SecurityServiceController {
 
     private final SecurityEventsRepository repository;
@@ -30,31 +32,31 @@ public class SecurityServiceController {
         this.repository = repository;
     }
 
-    @GetMapping("webapi/events/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public RegisteredEvent getRegisteredEvent(@PathVariable Long id) {
         return repository.getEvent(id);
     }
     
-    @GetMapping("webapi/events")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<RegisteredEvent> getRegisteredEvents() {
         return repository.getEvents();
     }
 
-    @PostMapping("webapi/events")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RegisteredEvent createEvent(@Valid @RequestBody EventRegistration registrationData) {
         return repository.create(registrationData);
     }
 
-    @DeleteMapping("webapi/events/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public RegisteredEvent deleteEvent(@PathVariable Long id) {
         return repository.delete(id);
     }
 
-    @PutMapping("webapi/events/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public RegisteredEvent updateEvent(@PathVariable Long id, @Valid @RequestBody RegisteredEventUpdate updateData) {
         return repository.update(id, updateData);
