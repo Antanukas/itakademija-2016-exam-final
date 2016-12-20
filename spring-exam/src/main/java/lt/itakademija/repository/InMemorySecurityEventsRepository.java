@@ -13,6 +13,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * In-memory security events repository. Internally, it uses {@link SequenceNumberGenerator} and {@link DateProvider}.
  *

@@ -7,6 +7,9 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
+
 public class SecurityServiceController {
 
     private final SecurityEventsRepository repository;
@@ -16,7 +19,8 @@ public class SecurityServiceController {
     }
 
     public List<RegisteredEvent> getRegisteredEvents() {
-        throw new UnsupportedOperationException("not implemented");
+        return repository.getEvents();
+    	//throw new UnsupportedOperationException("not implemented");
     }
 
     public RegisteredEvent createEvent(EventRegistration registrationData) {
