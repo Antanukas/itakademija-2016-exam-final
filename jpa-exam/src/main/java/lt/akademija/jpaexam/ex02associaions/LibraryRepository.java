@@ -1,15 +1,32 @@
 package lt.akademija.jpaexam.ex02associaions;
 
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import lt.akademija.jpaexam.ex01simple.CarEntity;
 
 @Repository
 public class LibraryRepository {
 
+	@Autowired
+	private EntityManager em;
+	
+	@Transactional
     public Library saveOrUpdate(Library e) {
-        throw new UnsupportedOperationException();
+    	if (e.getId() == null) {
+            em.persist(e);
+            return e;
+        } else {
+            Library updatedLibrary = em.merge(e);
+            em.persist(updatedLibrary);
+            return updatedLibrary;
+        }
     }
 
     public Library find(Long id) {
-        throw new UnsupportedOperationException();
+        return em.find(Library.class, id);
     }
 }
