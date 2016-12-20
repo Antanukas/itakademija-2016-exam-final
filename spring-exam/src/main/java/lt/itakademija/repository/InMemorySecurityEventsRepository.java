@@ -44,16 +44,16 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
      */
     @Override
     public RegisteredEvent create(EventRegistration eventRegistration) {
-        Long id = sequenceGenerator.getNext();
-        Date date = dateProvider.getCurrentDate();
-        SeverityLevel severity = eventRegistration.getSeverityLevel();
-        String location = eventRegistration.getLocation();
-        String description = eventRegistration.getDescription();
-        
-        RegisteredEvent event = new RegisteredEvent(id, date, severity, location, description);
+        RegisteredEvent event = new RegisteredEvent(
+                                    sequenceGenerator.getNext(), 
+                                    dateProvider.getCurrentDate(), 
+                                    eventRegistration.getSeverityLevel(), 
+                                    eventRegistration.getLocation(), 
+                                    eventRegistration.getDescription());
         registeredEvents.add(event);
         return event;
     }
+    
     
     @Override
     public RegisteredEvent getEvent(Long id) {
@@ -84,19 +84,18 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
         if (event == null) {
             return null;
         }
-        Long eventId = event.getId();
-        delete(eventId);
+        delete(event.getId());
         
-        Date date = event.getRegistrationDate();
-        SeverityLevel severity = registeredEventUpdate.getSeverityLevel();
-        String location = event.getLocation();
-        String description = event.getDescription();
-        
-        RegisteredEvent updatedEvent = new RegisteredEvent(id, date, severity, location, description);
+        RegisteredEvent updatedEvent = new RegisteredEvent(
+                                            event.getId(), 
+                                            event.getRegistrationDate(), 
+                                            registeredEventUpdate.getSeverityLevel(), 
+                                            event.getLocation(), 
+                                            event.getDescription());
         registeredEvents.add(updatedEvent);
         return updatedEvent;
     }
-
+    
     @Override
     public List<RegisteredEvent> getFilteredEvents(Date dateFrom, Date dateTill, String descriptionFragment, String locationFragment) {
         Stream<RegisteredEvent> filteredStream = registeredEvents.stream();
