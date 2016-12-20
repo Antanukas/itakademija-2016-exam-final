@@ -4,7 +4,14 @@ import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * In-memory security events repository. Internally, it uses {@link SequenceNumberGenerator} and {@link DateProvider}.
@@ -16,6 +23,8 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
     private final SequenceNumberGenerator sequenceGenerator;
 
     private final DateProvider dateProvider;
+    
+    private final List<RegisteredEvent> regEvents = new ArrayList<RegisteredEvent>();
 
     public InMemorySecurityEventsRepository(SequenceNumberGenerator sequenceGenerator, DateProvider dateProvider) {
         this.sequenceGenerator = sequenceGenerator;
@@ -30,22 +39,49 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
      */
     @Override
     public RegisteredEvent create(EventRegistration eventRegistration) {
-        throw new UnsupportedOperationException("not implemented");
+        RegisteredEvent re = new RegisteredEvent(this.sequenceGenerator.getNext(),
+        						this.dateProvider.getCurrentDate(),
+        						eventRegistration.getSeverityLevel(),
+        						eventRegistration.getLocation(),
+        						eventRegistration.getLocation());
+    	regEvents.add(re);
+    	return re;
+    	//throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
     public List<RegisteredEvent> getEvents() {
-        throw new UnsupportedOperationException("not implemented");
+        return Collections.unmodifiableList(regEvents);
+    	//throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
     public RegisteredEvent delete(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+        RegisteredEvent re = this.find(id);
+        regEvents.remove(re);
+        return re;
+    	//throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
     public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
-        throw new UnsupportedOperationException("not implemented");
+    	RegisteredEvent re = null;
+    	for (int j = 0; j < regEvents.size(); j++) {
+    		re = regEvents.get(j); 
+			if (re.getId().equals(id)) {
+				re.setSeverityLevel(registeredEventUpdate.getSeverityLevel());
+				regEvents.add(j, re);
+				break;
+			}
+		}
+    	return re;
+    	//throw new UnsupportedOperationException("not implemented");
+    }
+    
+    private RegisteredEvent find(Long id) {
+    	return regEvents.stream()
+						.filter(reg -> reg.getId().equals(id))
+						.findFirst().get();
     }
 
 }
