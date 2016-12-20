@@ -9,11 +9,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 /**
  * In-memory security events repository. Internally, it uses {@link SequenceNumberGenerator} and {@link DateProvider}.
  *
  * Created by mariusg on 2016.12.19.
  */
+@Component("InMemorySecurityEventsRepository")
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
 
     private final SequenceNumberGenerator sequenceGenerator;

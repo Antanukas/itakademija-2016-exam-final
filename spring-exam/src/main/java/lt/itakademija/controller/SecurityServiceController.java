@@ -7,6 +7,8 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+@Component("SecurityServiceController")
 public class SecurityServiceController {
 
     private final SecurityEventsRepository repository;
