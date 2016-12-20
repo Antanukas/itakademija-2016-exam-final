@@ -2,10 +2,21 @@ package lt.akademija.jpaexam.ex01simple;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class CarEntity {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	@NotNull
     private String model;
+	@NotNull
     private Date manufactureDate;
 
     public Long getId() {
