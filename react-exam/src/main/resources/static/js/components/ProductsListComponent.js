@@ -1,9 +1,9 @@
 function ProductsListComponent(props) {
 	return (
-    <div class="row">
+    <div className="row">
       {props.products}
     </div>
   );	
 }
 
-widnow.ProductsListComponent = ProductsListComponent;
+window.ProductsListComponent = ProductsListComponent;
