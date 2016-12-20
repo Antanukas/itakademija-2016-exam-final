@@ -13,9 +13,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CarRepository {
 
-    @Autowired
     private EntityManager em;
     
+    @Autowired
+    public CarRepository(EntityManager em) {
+        this.em = em;
+    }
+
     /**
      * Searches database for all cars and returns list of them
      * @return
