@@ -1,3 +1,5 @@
+var Link = ReactRouter.Link;
+
 function Header(props) {
 	return (
 		<nav className="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -9,18 +11,15 @@ function Header(props) {
             <span className="icon-bar"></span>
             <span className="icon-bar"></span>
           </button>
-          <a className="navbar-brand" href="#">Start Bootstrap</a>
+          <a className="navbar-brand" href="#">IT Akademija</a>
         </div>
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul className="nav navbar-nav">
             <li>
-              <a href="#">About</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <a href="#">Contact</a>
+              <Link to="/admin/books/new">Add book</Link>
             </li>
           </ul>
         </div>

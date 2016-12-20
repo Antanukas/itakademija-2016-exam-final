@@ -17,8 +17,12 @@ var ProductsListContainer = React.createClass({
 	    this.state.data.forEach(details => {
 	      products.push(<ProductCardComponent 
 	                      key={details.isbn}
-	    		  		  title={details.title}
-	                      description={details.description}
+	      				  id={details.id}
+					      isbn={details.isbn}
+					      title={details.title}
+					      author={details.author}
+					      quantity={details.quantity}
+					      publishedAt={details.publishedAt}
 	                    />);
 	    });
 	    return products;

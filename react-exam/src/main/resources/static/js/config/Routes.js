@@ -7,6 +7,11 @@ var Routes = (
 	<Router history={hashHistory}>
 	    <Route path="/" component={App}>
 	      <IndexRoute component={HomePageContainer} />
+	      <Route path="admin/books">
+	      	<IndexRoute component={NoMatch} />
+	      	<Route path="new" component={NewBookContainer}/>
+	      	<Route path=":id/edit" component={EditBookContainer}/>
+	      </Route>
 	      <Route path="*" component={NoMatch}/>
 	    </Route>
 	</Router>
