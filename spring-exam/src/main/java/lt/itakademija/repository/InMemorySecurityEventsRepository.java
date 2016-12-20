@@ -3,9 +3,10 @@ package lt.itakademija.repository;
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
-
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.NotNull;
+import org.springframework.stereotype.Repository;
 
 /**
  * In-memory security events repository. Internally, it uses
@@ -13,10 +14,12 @@ import java.util.List;
  *
  * Created by mariusg on 2016.12.19.
  */
+@Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
 
+	@NotNull
 	private final SequenceNumberGenerator sequenceGenerator;
-
+	@NotNull
 	private final DateProvider dateProvider;
 
 	private final List<RegisteredEvent> eventList = new ArrayList<RegisteredEvent>();
@@ -51,32 +54,32 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 	@Override
 	public RegisteredEvent delete(Long id) {
 		// throw new UnsupportedOperationException("not implemented");
-		RegisteredEvent temporaryReturn = null;
-		for (int i = 0; i < eventList.size(); i++) {
-			if (eventList.get(i).getId() == id) {
-				temporaryReturn = eventList.get(i);
-				eventList.remove(i);
+		RegisteredEvent deletedEvent = null;
+
+		for (RegisteredEvent event : eventList) {
+			if (event.getId() == id) {
+				deletedEvent = event;
+				eventList.remove((eventList.indexOf(event)));
+				break;
 			}
 		}
-		return temporaryReturn;
+		return deletedEvent;
 	}
 
 	@Override
 	public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
 		// throw new UnsupportedOperationException("not implemented");
-		int updatedId = 0;
-		for (int i = 0; i < eventList.size(); i++) {
-			if (eventList.get(i).getId() == id) {
-				// registeredEventUpdate.getSeverityLevel(); // only one
-				// updatable thing
-				eventList.get(i).setSeverityLevel(registeredEventUpdate.getSeverityLevel());
-				updatedId = i;
+		RegisteredEvent eventUpdate = null;
+
+		for (RegisteredEvent event : eventList) {
+			if (event.getId() == id) {
+				eventUpdate = new RegisteredEvent(event.getId(), event.getRegistrationDate(),
+						registeredEventUpdate.getSeverityLevel(), event.getLocation(), event.getDescription());
+
+				eventList.set((eventList.indexOf(event)), eventUpdate);
+				break;
 			}
 		}
-		return eventList.get(updatedId);
+		return eventUpdate;
 	}
 }
-
-/*
- * IDs are Long but, "for" cycles are using int not enough memory for Long, Iterator Should be used!!!!
- */

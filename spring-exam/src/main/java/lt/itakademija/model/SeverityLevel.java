@@ -7,6 +7,6 @@ package lt.itakademija.model;
  */
 public enum SeverityLevel {
 
-    LOW, NORMAL, HIGH;
+	LOW, NORMAL, HIGH;
 
 }

@@ -13,36 +13,40 @@ import lt.itakademija.model.RegisteredEventUpdate;
  */
 public interface SecurityEventsRepository {
 
-    /**
-     * Returns a list of registered events.
-     *
-     * @return list of registered events.
-     */
-    List<RegisteredEvent> getEvents();
+	/**
+	 * Returns a list of registered events.
+	 *
+	 * @return list of registered events.
+	 */
+	List<RegisteredEvent> getEvents();
 
-    /**
-     * Creates registered event.
-     *
-     * @param eventRegistration event data
-     * @return created event
-     */
-    RegisteredEvent create(EventRegistration eventRegistration);
+	/**
+	 * Creates registered event.
+	 *
+	 * @param eventRegistration
+	 *            event data
+	 * @return created event
+	 */
+	RegisteredEvent create(EventRegistration eventRegistration);
 
-    /**
-     * Deletes a registered event.
-     *
-     * @param id event id
-     * @return deleted event
-     */
-    RegisteredEvent delete(Long id);
+	/**
+	 * Deletes a registered event.
+	 *
+	 * @param id
+	 *            event id
+	 * @return deleted event
+	 */
+	RegisteredEvent delete(Long id);
 
-    /**
-     * Updates registered event.
-     *
-     * @param id event id
-     * @param registeredEventUpdate data to update
-     * @return updated event
-     */
-    RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate);
+	/**
+	 * Updates registered event.
+	 *
+	 * @param id
+	 *            event id
+	 * @param registeredEventUpdate
+	 *            data to update
+	 * @return updated event
+	 */
+	RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate);
 
 }
