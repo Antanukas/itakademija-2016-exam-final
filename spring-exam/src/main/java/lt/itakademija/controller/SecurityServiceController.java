@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -19,7 +23,7 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 @RestController
 @Api(value = "Security controller")
-@RequestMapping("http://localhost:9092/spring-exam/webapi/events")
+@RequestMapping("spring-exam/webapi/events/")
 public class SecurityServiceController {
 
 	@Autowired
@@ -29,6 +33,7 @@ public class SecurityServiceController {
         this.repository = repository;
     }
     
+    @GetMapping
     @RequestMapping(method = RequestMethod.GET)// 3rd task's addition
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get all registered events", notes = "Returns a list of all rgistered events with their information.")
@@ -37,6 +42,7 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
     
+    @PostMapping
     @RequestMapping(method = RequestMethod.POST)// 3rd task's addition
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Adds a new event", notes = "Adds a new event to the current event list.")
@@ -45,6 +51,7 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
     
+    @DeleteMapping
     @RequestMapping(method = RequestMethod.DELETE)// 3rd task's addition
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Deletes a specific event", notes = "Deletes an avent from database based on the supplied event id.")
@@ -52,7 +59,8 @@ public class SecurityServiceController {
         return repository.delete(id);
         //throw new UnsupportedOperationException("not implemented");
     }
-
+    
+    @PutMapping
     @RequestMapping(method = RequestMethod.PUT)// 3rd task's addition
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Updates an event", notes = "Updates and event that already exists in the database.")
