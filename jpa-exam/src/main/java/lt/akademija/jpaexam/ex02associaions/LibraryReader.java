@@ -14,21 +14,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class LibraryReader {
-
+public class LibraryReader extends BasicEntity {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	
+	
 	private String firstName;
 	private String lastName;
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "library_reader_id")
-	private List<LibraryReaderAddress> addresses;
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Book> borrowedBooks;
-
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -36,6 +33,15 @@ public class LibraryReader {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "library_reader_id")
+	private List<LibraryReaderAddress> addresses;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Book> borrowedBooks;
+
+	
 
 	public String getFirstName() {
 		return firstName;

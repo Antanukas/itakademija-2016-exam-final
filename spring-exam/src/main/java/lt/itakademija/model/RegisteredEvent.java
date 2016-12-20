@@ -5,21 +5,30 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description="Registered event")
 public final class RegisteredEvent {
 
 	@NotNull
+	@ApiModelProperty(value = "event id")
 	private Long id;
 
 	@NotNull
+	@ApiModelProperty(value = "registration date")
 	private Date registrationDate;
 
 	@NotNull
+	@ApiModelProperty(value = "severity level")
 	private SeverityLevel severityLevel;
 
 	@NotNull
+	@ApiModelProperty(value = "location of event")
 	private String location;
 
 	@NotNull
+	@ApiModelProperty(value = "description of event")
 	private String description;
 
 	

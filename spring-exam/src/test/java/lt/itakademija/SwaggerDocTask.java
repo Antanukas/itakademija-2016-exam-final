@@ -23,7 +23,7 @@ import static org.hamcrest.CoreMatchers.is;
  */
 public class SwaggerDocTask {
 
-    private String url = "http://localhost:9092/spring-exam/v2/api-docs";
+    private String url = "http://localhost:9092/v2/api-docs";
 
     private static TestRestTemplate restTemplate;
 
@@ -31,7 +31,7 @@ public class SwaggerDocTask {
     public static void setUp() {
         restTemplate = new TestRestTemplate(new RestTemplate());
     }
-
+    
     @Test
     public void swaggerDocIsPublished() {
         Grader.graded(5, () -> {

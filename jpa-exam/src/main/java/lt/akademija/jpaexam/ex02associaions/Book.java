@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Book {
+public class Book extends BasicEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

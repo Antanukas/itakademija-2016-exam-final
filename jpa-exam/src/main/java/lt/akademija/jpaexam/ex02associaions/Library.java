@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Library {
+public class Library extends BasicEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

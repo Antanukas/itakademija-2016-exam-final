@@ -7,21 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookRepository {
+public class BookRepository extends AbstractRepository<Book> {
 
 	@Autowired
 	private EntityManager entityManager;
 
 	@Transactional
 	public Book saveOrUpdate(Book e) {
-		if (e.getId() == null) {
-			entityManager.persist(e);
-			return e;
-		} else {
-			Book merged = entityManager.merge(e);
-			entityManager.persist(merged);
-			return merged;
-		}
+		return (Book) super.save(e);
 	}
 
 	public Book find(Long bookId) {

@@ -8,21 +8,14 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class LibraryRepository {
+public class LibraryRepository extends AbstractRepository<Library> {
 
 	@Autowired
 	private EntityManager entityManager;
 
 	@Transactional
 	public Library saveOrUpdate(Library e) {
-		if (e.getId() == null) {
-			entityManager.persist(e);
-			return e;
-		} else {
-			Library merged = entityManager.merge(e);
-			entityManager.persist(merged);
-			return merged;
-		}
+		return (Library) super.save(e);
 	}
 
 	public Library find(Long id) {
