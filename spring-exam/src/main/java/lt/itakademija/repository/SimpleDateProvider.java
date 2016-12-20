@@ -1,5 +1,6 @@
 package lt.itakademija.repository;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -9,6 +10,8 @@ public class SimpleDateProvider implements DateProvider {
 
     @Override
     public Date getCurrentDate() {
-        throw new UnsupportedOperationException("not implemented");
+        return new Date();
+        //Calendar.getInstance().getTime();
+    	//throw new UnsupportedOperationException("not implemented");
     }
 }
