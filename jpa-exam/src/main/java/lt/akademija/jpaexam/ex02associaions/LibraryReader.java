@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,7 +20,7 @@ public class LibraryReader {
     private String firstName;
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<LibraryReaderAddress> addresses;
     
     @ManyToMany(cascade = CascadeType.ALL)
@@ -69,7 +70,9 @@ public class LibraryReader {
     }
 
     public void addBorrowedBook(Book b) {
-    	b.getBookReaders().add(this);
+    	borrowedBooks = new ArrayList<>();
     	borrowedBooks.add(b);
+    	b.getBookReaders().add(this);
+    	
     }
 }

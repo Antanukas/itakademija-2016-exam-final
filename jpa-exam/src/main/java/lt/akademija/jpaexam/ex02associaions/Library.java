@@ -24,7 +24,7 @@ public class Library {
     /**
      * Readers are people registered to particular library.
      */
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinColumn(name = "library_id")
     private List<LibraryReader> readers;
 

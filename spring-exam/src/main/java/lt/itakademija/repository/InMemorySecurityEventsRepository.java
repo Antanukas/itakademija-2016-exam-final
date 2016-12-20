@@ -8,12 +8,16 @@ import lt.itakademija.model.SeverityLevel;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 /**
  * In-memory security events repository. Internally, it uses
  * {@link SequenceNumberGenerator} and {@link DateProvider}.
  *
  * Created by mariusg on 2016.12.19.
  */
+@Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
 
 	private final SequenceNumberGenerator sequenceGenerator;
@@ -49,11 +53,11 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 
 	@Override
 	public RegisteredEvent delete(Long id) {
-		RegisteredEvent deleteEvent = registeredEvents.stream().filter(p -> p.getId().equals(id)).findFirst()
+		RegisteredEvent deletedEvent = registeredEvents.stream().filter(p -> p.getId().equals(id)).findFirst()
 				.orElseThrow(() -> new RuntimeException());
-		int deleteEventIndex = registeredEvents.indexOf(deleteEvent);
+		int deleteEventIndex = registeredEvents.indexOf(deletedEvent);
 		registeredEvents.remove(deleteEventIndex);
-		return deleteEvent;
+		return deletedEvent;
 	}
 
 	@Override
