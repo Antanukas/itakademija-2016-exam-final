@@ -3,6 +3,9 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
 @Component // 2nd task's addon
 public final class RegisteredEvent {
@@ -10,11 +13,13 @@ public final class RegisteredEvent {
     private Long id;
 
     private Date registrationDate;
-
+    @NotNull
     private SeverityLevel severityLevel;
-
+    @NotNull
+	@Length(min = 1, max = 30)
     private String location;
-
+    @NotNull
+	@Length(min = 1, max = 30)
     private String description;
 
     public RegisteredEvent() {
