@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
@@ -92,6 +95,24 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
         RegisteredEvent updatedEvent = new RegisteredEvent(id, date, severity, location, description);
         registeredEvents.add(updatedEvent);
         return updatedEvent;
+    }
+
+    @Override
+    public List<RegisteredEvent> getFilteredEvents(Date dateFrom, Date dateTill, String descriptionFragment, String locationFragment) {
+        Stream<RegisteredEvent> filteredStream = registeredEvents.stream();
+        if (dateFrom != null) {
+            filteredStream = filteredStream.filter(event -> event.getRegistrationDate().after(dateFrom));
+        }
+        if (dateTill != null) {
+            filteredStream = filteredStream.filter(event -> event.getRegistrationDate().before(dateTill));
+        }
+        if (descriptionFragment != null) {
+            filteredStream = filteredStream.filter(event -> event.getDescription().toLowerCase().contains(descriptionFragment.toLowerCase()));
+        }
+        if (locationFragment != null) {
+            filteredStream = filteredStream.filter(event -> event.getLocation().toLowerCase().contains(locationFragment.toLowerCase()));
+        }
+        return filteredStream.collect(Collectors.toList());
     }
 
 }

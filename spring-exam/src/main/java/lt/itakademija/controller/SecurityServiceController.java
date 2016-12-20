@@ -1,10 +1,12 @@
 package lt.itakademija.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,13 +39,6 @@ public class SecurityServiceController {
         this.repository = repository;
     }
 
-    
-//    @ApiOperation(value = "", notes = "")
-//    public User getUser(@ApiParam(value = "User ID", required = true)
-//    @PathVariable final String username) {
-//    return userDao.getUser(username);
-//    }
-    
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get registered event by ID")
@@ -54,9 +50,18 @@ public class SecurityServiceController {
     
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Get all registered events")
-    public List<RegisteredEvent> getRegisteredEvents() {
-        return repository.getEvents();
+    @ApiOperation(value = "Get list of registered events", notes="Optionally you can pass params to filter events")
+    public List<RegisteredEvent> getRegisteredEvents(
+            @ApiParam(value = "Start date of date interval filter, pattern='yyyy-MM-dd'T'HH:mm:ss", required = false, example="2015-01-01T10:00:00")
+            @RequestParam(required=false, name="dateFrom") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateFrom,
+            @ApiParam(value = "End date of date interval filter, pattern='yyyy-MM-dd'T'HH:mm:ss", required = false, example="2016-01-01T10:00:00")
+            @RequestParam(required=false, name="dateTill") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateTill,
+            @ApiParam(value = "Fragment of event description, case insensitive", required = false)
+            @RequestParam(required=false, name="description") String descriptionFragment,
+            @ApiParam(value = "Fragment of event location, case insensitive", required = false)
+            @RequestParam(required=false, name="location") String locationFragment) {
+//            return repository.getEvents();
+            return repository.getFilteredEvents(dateFrom, dateTill, descriptionFragment, locationFragment);
     }
 
     @PostMapping
@@ -88,4 +93,7 @@ public class SecurityServiceController {
         return repository.update(id, updateData);
     }
 
+    
+    
+    
 }
