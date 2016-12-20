@@ -1,9 +1,14 @@
 package lt.akademija.jpaexam.ex01simple;
 
-import java.util.Date;
+import java.util.Date; 
 
+import javax.persistence.Entity;
+
+import org.springframework.data.annotation.Id;
+
+@Entity
 public class CarEntity {
-
+	@Id
     private Long id;
     private String model;
     private Date manufactureDate;

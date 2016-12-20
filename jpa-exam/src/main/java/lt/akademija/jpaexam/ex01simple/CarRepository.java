@@ -1,6 +1,6 @@
 package lt.akademija.jpaexam.ex01simple;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.stereotype.Repository;
 
