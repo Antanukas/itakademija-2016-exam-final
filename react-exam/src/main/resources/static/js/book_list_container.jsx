@@ -12,7 +12,9 @@ var BookListContainer = React.createClass({
   },
 
   render: function() {
-    console.log(this.props);
+    console.log("book_list_container props:");
+    console.log(this);
+
     return <BookListComponent books={this.state.books} />
   }
 });

@@ -3,19 +3,22 @@ var PropTypes = React.PropTypes;
 var BookAdministrationComponent = React.createClass({
 
   render: function() {
+
     var title;
     var submitButton;
     if (this.props.id) {
-      title = 'Atnaujinamas produktas ' + this.props.id;
-      submitButton =  <button className="btn btn-success" onClick={this.props.onSaveClick}>Edit</button>
+      title = 'Atnaujinama knyga # ' + this.props.id;
+      submitButton =  <button className="btn btn-success" onClick={this.props.onSaveClick} href="#/books">Edit</button>
 
     } else {
-      title = 'Kuriamas naujas produktas';
-      submitButton = <button className="btn btn-success" onClick={this.props.onSaveClick}>Submit</button>
+      title = 'Pridedama nauja knyga';
+      submitButton = <button className="btn btn-success" onClick={this.props.onSaveClick} href="#/">Submit</button>
     };
+    console.log("ADMIN COMPONENT:");
+    console.log(this);
     return (
       <div className='col-sm-4'>
-        <h2>Book admin comp</h2>
+        <h2>{title}</h2>
         <form className="form">
           <div className="form-group">
             <label>Title</label>
@@ -25,7 +28,7 @@ var BookAdministrationComponent = React.createClass({
               value={this.props.title}
               onChange={this.props.onTitleChange}
               id="exampleInputName2"
-              placeholder="The title of your book"
+              placeholder={this.props.title}
               />
           </div>
           <div className="form-group">
@@ -33,10 +36,10 @@ var BookAdministrationComponent = React.createClass({
             <input
               type="text"
               className="form-control"
-              value={this.props.authors}
+              value={this.props.author}
               onChange={this.props.onAuthorsChange}
               id="exampleInputName2"
-              placeholder="Author or authors of the book"
+              placeholder={this.props.author}
               />
           </div>
           <div className="form-group">
@@ -47,7 +50,7 @@ var BookAdministrationComponent = React.createClass({
               value={this.props.isbn}
               onChange={this.props.onIsbnChange}
               id="exampleInputName2"
-              placeholder="ISBN"
+              placeholder={this.props.isbn}
               />
           </div>
           <div className="form-group">
@@ -62,7 +65,7 @@ var BookAdministrationComponent = React.createClass({
               />
           </div>
 
-          {submitButton} <button href="/">Cancel</button>
+          {submitButton} <button onClick={this.props.onCancelCLick} href='/'>Cancel</button>
         </form>
       </div>
     );

@@ -1,19 +1,31 @@
 var PropTypes = React.PropTypes;
 
-var BookAdministrationContainer = React.createClass({
+var BookAdministrationContainerEdit = React.createClass({
 
   getInitialState: function() {
 
       return {
       id: this.props.params.id,
-      title: '',
-      author: '',
-      isbn: '',
-      quantity: 0
+      title: this.props.title,
+      author: this.props.author,
+      isbn: this.props.isbn,
+      quantity: this.props.quantity
       }
 
     },
-
+  // componentDidMount: function(e){
+  //   this.setState({
+  //     title: this.props.title,
+  //
+  //   })
+  // },
+  componentWillMount: function() {
+    var self = this;
+    axios.get('http://localhost:8080/api/books')
+      .then(function (response) {
+        self.setState({ books: response.data });
+      })
+  },
   handleSaveClick: function(e) {
     var self = this;
     var body = {
@@ -22,9 +34,10 @@ var BookAdministrationContainer = React.createClass({
       isbn: this.state.isbn,
       quantity: this.state.quantity
     }
-    axios.post('http://localhost:8080/api/books', body)
+    axios.post('http://localhost:8080/api/books/:id', body)
       .then(function (response) {
         var p = response.data;
+
         self.setState({
           id: p.id,
           title: p.title,
@@ -33,10 +46,11 @@ var BookAdministrationContainer = React.createClass({
           quantity: p.quantity
       });
       self.props.router.push('/api/books' + p.id);
+      console.log("This is response");
+      console.log(response);
     });
     e.preventDefault();
   },
-
 
   handleTitleChange: function(e) {
     this.setState({ title: e.target.value });
@@ -56,10 +70,13 @@ var BookAdministrationContainer = React.createClass({
   },
 
   render: function() {
-    // console.log("These are my props":);
-
-    console.log("admin_comp this.state:");
+    console.log("EDIT: These are my props");
+    console.log(this.props);
+    console.log("This is my state");
     console.log(this.state);
+
+
+
     return (
       <BookAdministrationComponent
         id={this.state.id}
@@ -77,4 +94,4 @@ var BookAdministrationContainer = React.createClass({
   }
 });
 
-window.BookAdministrationContainer = BookAdministrationContainer;
+window.BookAdministrationContainerEdit = BookAdministrationContainerEdit;

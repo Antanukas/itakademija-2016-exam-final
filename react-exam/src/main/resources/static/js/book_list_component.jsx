@@ -1,19 +1,20 @@
 var BookListComponent = function(props) {
   var bookCards = props.books.map(function (book, index) {
     return (
+
       <BookComponent
         key={index}
         id={book.id}
         isbn={book.isbn}
         title={book.title}
-        authors={book.authors}
+        author={book.author}
         quantity={book.quantity}
         publishedAt={book.publishedAt}
       />
     );
   });
   return (
-    <div className="row">
+    <div className="col-sm-6">
       {bookCards}
     </div>);
 };
