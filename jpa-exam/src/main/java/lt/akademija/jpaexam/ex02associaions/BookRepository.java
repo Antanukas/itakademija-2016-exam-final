@@ -28,7 +28,7 @@ public class BookRepository {
 	
 	@Transactional // nebutina
     public Book find(Long bookId) {
-    	Query query = entityManager.createQuery("SELECT b FROM Book b WHERE b.id = : bookId");
+    	Query query = entityManager.createQuery("SELECT b FROM Book b WHERE b.id = :bookId");
     	query.setParameter("bookId", bookId);
     	Book bookToReturn = (Book) query.getSingleResult();
     	return bookToReturn;

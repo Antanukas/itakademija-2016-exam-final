@@ -3,10 +3,13 @@ package lt.akademija.jpaexam.ex02associaions;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class LibraryReader {
@@ -17,8 +20,11 @@ public class LibraryReader {
 	
     private String firstName;
     private String lastName;
-
+    
+    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     private List<LibraryReaderAddress> addresses;
+    
+    @ManyToMany
     private List<Book> borrowedBooks;
 
     public Long getId() {
@@ -65,6 +71,14 @@ public class LibraryReader {
     }
 
     public void addBorrowedBook(Book b) {
-        throw new UnsupportedOperationException();
+    	System.out.println("test0");
+    	List<Book> tempList = this.getBorrowedBooks();
+    	tempList.add(b);
+    	this.borrowedBooks = tempList;
+    	List<LibraryReader> readersList = new ArrayList<LibraryReader>();
+    	readersList = b.getBookReaders();
+    	readersList.add(this);
+    	b.setBookReaders(readersList);
+    	//throw new UnsupportedOperationException();
     }
 }
