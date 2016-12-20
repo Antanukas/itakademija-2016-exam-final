@@ -5,9 +5,11 @@ package lt.itakademija.repository;
  */
 public final class SimpleSequenceNumberGenerator implements SequenceNumberGenerator {
 
+	private Long number = 0L;
+	
     @Override
     public Long getNext() {
-        throw new UnsupportedOperationException("not implemented");
+        return ++number;
     }
 
 }

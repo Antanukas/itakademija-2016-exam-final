@@ -1,7 +1,14 @@
 package lt.akademija.jpaexam.ex02associaions;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class LibraryReaderAddress {
 
+	@Id
+	@GeneratedValue
     private Long id;
     private String street;
     private String city;
