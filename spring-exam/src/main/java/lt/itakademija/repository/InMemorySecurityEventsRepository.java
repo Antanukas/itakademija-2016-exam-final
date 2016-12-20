@@ -3,7 +3,10 @@ package lt.itakademija.repository;
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
+import lt.itakademija.model.SeverityLevel;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,9 +20,12 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 
     private final DateProvider dateProvider;
 
+	private List<RegisteredEvent> eventList;
+
     public InMemorySecurityEventsRepository(SequenceNumberGenerator sequenceGenerator, DateProvider dateProvider) {
         this.sequenceGenerator = sequenceGenerator;
         this.dateProvider = dateProvider;
+		this.eventList = new ArrayList<RegisteredEvent>();
     }
 
     /*
@@ -30,17 +36,28 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
      */
     @Override
     public RegisteredEvent create(EventRegistration eventRegistration) {
-        throw new UnsupportedOperationException("not implemented");
+        String description = eventRegistration.getDescription();
+        String location = eventRegistration.getLocation();
+        SeverityLevel level = eventRegistration.getSeverityLevel();
+		Long id = sequenceGenerator.getNext();
+		Date date = dateProvider.getCurrentDate();
+		
+		RegisteredEvent event = new RegisteredEvent(id,date,level,location,description);
+		this.eventList.add(event);
+		return event;
     }
 
     @Override
     public List<RegisteredEvent> getEvents() {
-        throw new UnsupportedOperationException("not implemented");
+        return eventList;
     }
 
     @Override
     public RegisteredEvent delete(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+    	RegisteredEvent event = new RegisteredEvent(id, null, null, null, null);
+    	this.eventList.remove(event);
+		return event;
+    	
     }
 
     @Override
