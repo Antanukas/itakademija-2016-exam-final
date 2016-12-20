@@ -15,7 +15,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
+@Api(value = "event")
 @RequestMapping(path = "webapi/events")
 public class SecurityServiceController {
 
@@ -27,25 +32,34 @@ public class SecurityServiceController {
     }
 
 	@GetMapping
+	@ApiOperation(value = "Get events", notes = "Returns registered events.")
     public List<RegisteredEvent> getRegisteredEvents() {
         return repository.getEvents();
     	//throw new UnsupportedOperationException("not implemented");
     }
 
 	@PostMapping
-    public RegisteredEvent createEvent(EventRegistration registrationData) {
+	@ApiOperation(value = "Create event", notes = "Creates registered event.")
+    public RegisteredEvent createEvent(@ApiParam(value = "EventRegistration - registration data", required = true)
+    									EventRegistration registrationData) {
         return repository.create(registrationData);
     	//throw new UnsupportedOperationException("not implemented");
     }
 
 	@DeleteMapping
-    public RegisteredEvent deleteEvent(Long id) {
+	@ApiOperation(value = "Delete event", notes = "Deletes registered event.")
+    public RegisteredEvent deleteEvent(@ApiParam(value = "RegisteredEvent ID", required = true)
+    									Long id) {
         return repository.delete(id);
     	//throw new UnsupportedOperationException("not implemented");
     }
 
     @PutMapping
-    public RegisteredEvent updateEvent(Long id, RegisteredEventUpdate updateData) {
+    @ApiOperation(value = "Update event", notes = "Updates registered event.")
+    public RegisteredEvent updateEvent(@ApiParam(value = "RegisteredEvent ID", required = true)
+    									Long id,
+    									@ApiParam(value = "RegisteredEventUpdate - update data", required = true)
+    									RegisteredEventUpdate updateData) {
         return repository.update(id, updateData);
     	//throw new UnsupportedOperationException("not implemented");
     }
