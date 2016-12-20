@@ -1,32 +1,12 @@
 package lt.akademija.jpaexam.ex02associaions;
 
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookRepository {
+public class BookRepository extends GenericBaseRepository<Book>{
 
-    private EntityManager em;
-    
-    @Autowired
-    public BookRepository(EntityManager em) {
-        this.em = em;
-    }
-    
-    @Transactional
-    public Book saveOrUpdate(Book e) {
-        if (e.getId() != null && find(e.getId()) != null) {
-            return em.merge(e);
-        } else {
-            em.persist(e);
-            return e;
-        }
+    public BookRepository() {
+        super(Book.class);
     }
 
-    public Book find(Long bookId) {
-        return em.find(Book.class, bookId);
-    }
 }
