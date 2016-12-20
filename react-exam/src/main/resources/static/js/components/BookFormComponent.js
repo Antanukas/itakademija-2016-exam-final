@@ -1,7 +1,8 @@
-function EditBookComponent(props) {
+function BookFormComponent(props) {
 	return (
 	<div style={{ marginTop: '10vh' }}>
-		<form onSubmit={props.update}>
+		<h3>Book {props.action} Form</h3>
+		<form onSubmit={props.submit}>
 			<div className="form-group row">
 			    <label htmlFor="inputTitle" className="col-sm-2 col-form-label">Title</label>
 			    <div className="col-sm-10">
@@ -26,11 +27,11 @@ function EditBookComponent(props) {
 					<input type="text" value={props.isbn} className="form-control" id="inputIsbn" onChange={props.changeIsbn} />
 				</div>
 			</div>
-			<button type="submit" className="btn btn-primary btn-lg">Update</button>&nbsp;
+			<button type="submit" className="btn btn-primary btn-lg">{props.action}</button>&nbsp;
 			<button type="submit" className="btn btn-warning btn-lg" onClick={props.cancel}>Cancel</button>
-		</form>
+		</form>	
 	</div>
 	);
 };
 
-window.EditBookComponent = EditBookComponent;
+window.BookFormComponent = BookFormComponent;

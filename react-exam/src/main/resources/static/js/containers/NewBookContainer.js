@@ -5,7 +5,8 @@ var NewBookContainer = React.createClass({
 	getInitialState: function() {
 		return { title: '', author: '', quantity: 0, isbn: '' };
 	},
-	handleSubmitCreate: function() {
+	handleSubmitCreate: function(e) {
+		e.preventDefault();
 		var _this = this;
 		var body = {
 			title: this.state.title,
@@ -21,7 +22,8 @@ var NewBookContainer = React.createClass({
 				console.log(err);
 			});
 	},
-	handleCancelCreate: function() {
+	handleCancelCreate: function(e) {
+		e.preventDefault();
 		this.context.router.goBack();
 	},
 	handleTitleChange: function(event) {
@@ -38,7 +40,7 @@ var NewBookContainer = React.createClass({
 	},
 	render: function() {
 		return (
-			<NewBookComponent
+			<BookFormComponent
 				title={this.state.title}
 				author={this.state.author}
 				quantity={this.state.quantity}
@@ -47,8 +49,9 @@ var NewBookContainer = React.createClass({
 				changeAuthor={this.handleAuthorChange}
 				changeQuantity={this.handleQuantityChange}
 				changeIsbn={this.handleIsbnChange}
-				create={this.handleSubmitCreate}
+				submit={this.handleSubmitCreate}
 				cancel={this.handleCancelCreate}
+				action="Create"
 			/>	
 		);
 	}

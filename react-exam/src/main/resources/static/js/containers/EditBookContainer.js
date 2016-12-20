@@ -20,7 +20,8 @@ var EditBookContainer = React.createClass({
 				consosle.log(err);
 			});
 	},
-	handleSubmitUpdate: function() {
+	handleSubmitUpdate: function(e) {
+		e.preventDefault();
 		var _this = this;
 		var body = {
 			id: this.props.params.id,
@@ -37,8 +38,9 @@ var EditBookContainer = React.createClass({
 				console.log(err);
 			});
 	},
-	handleCancelUpdate: function() {
-		this.props.router.goBack();
+	handleCancelUpdate: function(e) {
+		e.preventDefault();
+		this.context.router.goBack();
 	},
 	handleTitleChange: function(event) {
 		this.setState({ title: event.target.value });
@@ -54,7 +56,7 @@ var EditBookContainer = React.createClass({
 	},
 	render: function() {
 		return (
-			<EditBookComponent
+			<BookFormComponent
 				title={this.state.title}
 				author={this.state.author}
 				quantity={this.state.quantity}
@@ -63,8 +65,9 @@ var EditBookContainer = React.createClass({
 				changeAuthor={this.handleAuthorChange}
 				changeQuantity={this.handleQuantityChange}
 				changeIsbn={this.handleIsbnChange}
-				update={this.handleSubmitUpdate}
+				submit={this.handleSubmitUpdate}
 				cancel={this.handleCancelUpdate}
+				action="Update"
 			/>	
 		);
 	}
