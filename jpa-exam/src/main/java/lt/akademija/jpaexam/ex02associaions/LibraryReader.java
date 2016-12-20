@@ -3,13 +3,35 @@ package lt.akademija.jpaexam.ex02associaions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryReader {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
+public class LibraryReader {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
 
+    @Autowired
+    @OneToOne(cascade = CascadeType.ALL)
     private List<LibraryReaderAddress> addresses;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "bookReaders")
+    @JsonManagedReference
     private List<Book> borrowedBooks;
 
     public Long getId() {
