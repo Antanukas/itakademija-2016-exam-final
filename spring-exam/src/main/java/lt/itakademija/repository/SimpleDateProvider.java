@@ -1,5 +1,6 @@
 package lt.itakademija.repository;
 
+import java.time.Instant;
 import java.util.Date;
 
 /**
@@ -9,6 +10,6 @@ public class SimpleDateProvider implements DateProvider {
 
     @Override
     public Date getCurrentDate() {
-        throw new UnsupportedOperationException("not implemented");
+        return Date.from(Instant.now()); 
     }
 }
