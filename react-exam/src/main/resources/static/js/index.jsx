@@ -1,12 +1,4 @@
-var App = React.createClass({
-  render: function() {
-    return (
-      <div style={{ paddingTop: '20px' }}>
-        {this.props.children}
-      </div>
-    );
-  }
-});
+
 
 var NoMatch = React.createClass({
   render: function() {
@@ -20,10 +12,11 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
 ReactDOM.render((
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={HelloWorldComponent} />
-      <Route path="/hello-world" component={HelloWorldComponent} />
+  <Router history={window.ReactRouter.hashHistory}>
+    <Route path="/" component={Navigation}>
+      <IndexRoute component={BookListContainer} />
+      <Route path="/form" component={FormContainer} />
+      <Route path="/form/:id" component={FormContainer} />
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>
