@@ -1,10 +1,11 @@
 package lt.itakademija;
 
-import lt.itakademija.grader.Grade;
-import lt.itakademija.grader.Grader;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+
+import lt.itakademija.grader.Grade;
+import lt.itakademija.grader.Grader;
 
 /**
  * Created by mariusg on 2016.12.19.

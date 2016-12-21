@@ -1,7 +1,9 @@
 package lt.itakademija;
 
-import lt.itakademija.grader.Grader;
-import lt.itakademija.model.RegisteredEvent;
+import static org.hamcrest.CoreMatchers.is;
+
+import java.util.Map;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -11,19 +13,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.util.Map;
-
-import static org.hamcrest.CoreMatchers.is;
+import lt.itakademija.grader.Grader;
 
 /**
  * Created by mariusg on 2016.12.19.
  */
 public class SwaggerDocTask {
 
-    private String url = "http://localhost:9092/spring-exam/v2/api-docs";
+    private String url = "http://localhost:9092/v2/api-docs";
 
     private static TestRestTemplate restTemplate;
 

@@ -3,16 +3,25 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(description="Registered event")
 public final class RegisteredEvent {
-
+	
+	@ApiModelProperty(value = "event id")
     private Long id;
-
+	
+	@ApiModelProperty(value = "date registered")
     private Date registrationDate;
-
+	
+	@ApiModelProperty(value = "severity level")
     private SeverityLevel severityLevel;
 
+	@ApiModelProperty(value = "location")
     private String location;
-
+	
+	@ApiModelProperty(value = "daecription")
     private String description;
 
     public RegisteredEvent() {

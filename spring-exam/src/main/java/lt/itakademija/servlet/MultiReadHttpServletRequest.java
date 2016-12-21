@@ -21,7 +21,8 @@ public final class MultiReadHttpServletRequest extends HttpServletRequestWrapper
     }
 
     private byte[] read(ServletInputStream is) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        @SuppressWarnings("resource")
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         int singleByte = -1;
         while ((singleByte = is.read()) != -1) {
