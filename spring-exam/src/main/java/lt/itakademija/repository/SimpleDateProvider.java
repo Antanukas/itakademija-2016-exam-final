@@ -2,12 +2,13 @@ package lt.itakademija.repository;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by mariusg on 2016.12.19.
  */
-@Repository
+//@Repository
+@Service
 public class SimpleDateProvider implements DateProvider {
 
     @Override

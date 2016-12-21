@@ -7,6 +7,8 @@ import lt.itakademija.model.RegisteredEventUpdate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -17,9 +19,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
-
+	@NotNull
 	private final SequenceNumberGenerator sequenceGenerator;
-
+	@NotNull
 	private final DateProvider dateProvider;
 
 	private List<RegisteredEvent> eventsList = new ArrayList<RegisteredEvent>();
@@ -63,14 +65,15 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 
 	@Override
 	public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
-		int newId = 0;
-		for (int i = 0; i < eventsList.size(); i++) {
-			if (eventsList.get(i).getId() == id) {
-				eventsList.get(i).setSeverityLevel(registeredEventUpdate.getSeverityLevel());
-				newId = i;
+		RegisteredEvent update = null;
+		for (RegisteredEvent event : eventsList) {
+			if (event.getId() == id) {
+				update = new RegisteredEvent(event.getId(), event.getRegistrationDate(),
+						registeredEventUpdate.getSeverityLevel(), event.getLocation(), event.getDescription());
+				eventsList.set((eventsList.indexOf(event)), update);
 			}
 		}
-		return eventsList.get(newId);
+		return update;
 	}
 
 }
