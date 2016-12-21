@@ -2,54 +2,70 @@ package lt.akademija.jpaexam.ex02associaions;
 
 import java.util.List;
 
-public class Library {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
-    private Long id;
+@Entity
+public class Library extends BasicEntity {
 
-    /**
-     * Simple name of the library
-     */
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    /**
-     * Readers are people registered to particular library.
-     */
-    private List<LibraryReader> readers;
+	/**
+	 * Simple name of the library
+	 */
+	private String name;
 
-    /**
-     * Holds all books that are available to borrow in this library
-     */
-    private List<Book> books;
+	/**
+	 * Readers are people registered to particular library.
+	 */
+	@OneToMany()
+	@JoinColumn(name = "library_id")
+	private List<LibraryReader> readers;
 
-    public Long getId() {
-        return id;
-    }
+	/**
+	 * Holds all books that are available to borrow in this library
+	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn
+	private List<Book> books;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public List<LibraryReader> getReaders() {
-        return readers;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setReaders(List<LibraryReader> readers) {
-        this.readers = readers;
-    }
+	public List<LibraryReader> getReaders() {
+		return readers;
+	}
 
-    public List<Book> getBooks() {
-        return books;
-    }
+	public void setReaders(List<LibraryReader> readers) {
+		this.readers = readers;
+	}
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
+	public List<Book> getBooks() {
+		return books;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

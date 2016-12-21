@@ -3,59 +3,78 @@ package lt.akademija.jpaexam.ex02associaions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryReader {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-    private Long id;
-    private String firstName;
-    private String lastName;
+@Entity
+public class LibraryReader extends BasicEntity {
 
-    private List<LibraryReaderAddress> addresses;
-    private List<Book> borrowedBooks;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-    public Long getId() {
-        return id;
-    }
+	private String firstName;
+	private String lastName;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "library_reader_id")
+	private List<LibraryReaderAddress> addresses;
 
-    public String getLastName() {
-        return lastName;
-    }
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Book> borrowedBooks;
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public List<Book> getBorrowedBooks() {
-        if (borrowedBooks == null) {
-            borrowedBooks = new ArrayList<>();
-        }
-        return borrowedBooks;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setBorrowedBooks(List<Book> borrowedBooks) {
-        this.borrowedBooks = borrowedBooks;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public List<LibraryReaderAddress> getAddresses() {
-        return addresses;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setAddresses(List<LibraryReaderAddress> addresses) {
-        this.addresses = addresses;
-    }
+	public List<Book> getBorrowedBooks() {
+		if (borrowedBooks == null) {
+			borrowedBooks = new ArrayList<>();
+		}
+		return borrowedBooks;
+	}
 
-    public void addBorrowedBook(Book b) {
-        throw new UnsupportedOperationException();
-    }
+	public void setBorrowedBooks(List<Book> borrowedBooks) {
+		this.borrowedBooks = borrowedBooks;
+	}
+
+	public List<LibraryReaderAddress> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<LibraryReaderAddress> addresses) {
+		this.addresses = addresses;
+	}
+
+	public void addBorrowedBook(Book book) {
+		book.getBookReaders().add(this);
+		getBorrowedBooks().add(book);
+	}
 }

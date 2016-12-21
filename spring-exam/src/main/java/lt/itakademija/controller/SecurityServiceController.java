@@ -7,28 +7,63 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@RestController
+@Api(value = "user")
+@RequestMapping("/spring-exam")
 public class SecurityServiceController {
 
-    private final SecurityEventsRepository repository;
+	private final SecurityEventsRepository repository;
 
-    public SecurityServiceController(final SecurityEventsRepository repository) {
-        this.repository = repository;
-    }
+	@Autowired
+	public SecurityServiceController(final SecurityEventsRepository repository) {
+		this.repository = repository;
+	}
 
-    public List<RegisteredEvent> getRegisteredEvents() {
-        throw new UnsupportedOperationException("not implemented");
-    }
+	@RequestMapping(path = "/webapi/events", method = RequestMethod.GET)
+	@ApiOperation(value = "Get events", notes = "returns all registred events.")
+	public List<RegisteredEvent> getRegisteredEvents() {
+		return repository.getEvents();
+	}
 
-    public RegisteredEvent createEvent(EventRegistration registrationData) {
-        throw new UnsupportedOperationException("not implemented");
-    }
+	@RequestMapping(path = "/webapi/events/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get event", notes = "returns event by id.")
+	public RegisteredEvent getRegisteredEventsById(@PathVariable Long id) {
+		return repository.getEventById(id);
+	}
 
-    public RegisteredEvent deleteEvent(Long id) {
-        throw new UnsupportedOperationException("not implemented");
-    }
+	@RequestMapping(path = "/webapi/events", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	@ApiOperation(value = "Post event", notes = "Posts new event with registration data")
+	public RegisteredEvent createEvent(@Valid @RequestBody EventRegistration registrationData) {
+		return repository.create(registrationData);
+	}
 
-    public RegisteredEvent updateEvent(Long id, RegisteredEventUpdate updateData) {
-        throw new UnsupportedOperationException("not implemented");
-    }
+	@RequestMapping(path = "/webapi/events/{eventId}", method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Delete event", notes = "Deletes event by id")
+	public RegisteredEvent deleteEvent(@PathVariable Long eventId) {
+		return repository.delete(eventId);
+	}
+
+	@RequestMapping(path = "/webapi/events/{eventId}", method = RequestMethod.PUT)
+	@ApiOperation(value = "Put event", notes = "Updates event by id")
+	public RegisteredEvent updateEvent(@PathVariable Long eventId,
+			@Valid @RequestBody RegisteredEventUpdate updateData) {
+		return repository.update(eventId, updateData);
+	}
 
 }

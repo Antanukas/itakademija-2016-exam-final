@@ -3,46 +3,57 @@ package lt.akademija.jpaexam.ex02associaions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
-    private Long id;
-    private String title;
-    private String author;
+@Entity
+public class Book extends BasicEntity {
 
-    private List<LibraryReader> bookReaders;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	private String title;
+	private String author;
 
-    public Long getId() {
-        return id;
-    }
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "borrowedBooks")
+	private List<LibraryReader> bookReaders;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getAuthor() {
-        return author;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+	public String getAuthor() {
+		return author;
+	}
 
-    public List<LibraryReader> getBookReaders() {
-        if (bookReaders == null) {
-            bookReaders = new ArrayList<>();
-        }
-        return bookReaders;
-    }
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 
-    public void setBookReaders(List<LibraryReader> bookReaders) {
-        this.bookReaders = bookReaders;
-    }
+	public List<LibraryReader> getBookReaders() {
+		if (bookReaders == null) {
+			bookReaders = new ArrayList<>();
+		}
+		return bookReaders;
+	}
+
+	public void setBookReaders(List<LibraryReader> bookReaders) {
+		this.bookReaders = bookReaders;
+	}
 }
