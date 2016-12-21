@@ -46,13 +46,41 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
     
-    //@GetMapping
+    
+  //@GetMapping
     @RequestMapping(value="/{filterinCriteria}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation(value = "Get all registered events", notes = "Returns a list of all rgistered events with their information.")
-    public List<RegisteredEvent> getRegisteredEvents(@PathVariable final String filterinCriteria) {
+    @ApiOperation(value = "Filter registered events", notes = "Returns a list of filtered rgistered events with their information.")
+    public List<RegisteredEvent> filterRegisteredEvents(@PathVariable final String filterinCriteria) {
     	String[] requestDetails = filterinCriteria.split("&");
-
+    	String[] tempdate = requestDetails[0].split("T");
+    	String[] dateFrom = tempdate[0].split("=");
+    	String finalDateFrom = dateFrom[0];
+    	String[] timeFrom = tempdate[1].split(".");
+    	String finalTimeFrom = timeFrom[0];
+    	
+    	String[] tempdate1 = requestDetails[1].split("T");
+    	String[] dateTill = tempdate1[0].split("=");
+    	String finalDateTill = dateTill[0];
+    	String[] timeTill = tempdate1[1].split(".");
+    	String finalTimeTill = timeTill[0];
+    	
+    	String[] tempDescription = requestDetails[2].split("=");
+    	String finalDescription = tempDescription[0];
+    	
+    	String[] tempLocation = requestDetails[3].split("=");
+    	String finalLocation = tempDescription[0];
+    	
+    	return repository.getFilteredEvents(finalDateFrom, finalTimeFrom, finalDateTill, finalTimeTill, finalDescription, finalLocation);
+    	//throw new UnsupportedOperationException("not implemented");
+    }
+    
+    //@GetMapping
+    @RequestMapping(value="/", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get all registered events", notes = "Returns a list of all rgistered events with their information.")
+    public List<RegisteredEvent> getRegisteredEvents() {
+    	
     	return repository.getEvents();
     	//throw new UnsupportedOperationException("not implemented");
     }
