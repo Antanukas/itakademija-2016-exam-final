@@ -2,10 +2,26 @@ package lt.akademija.jpaexam.ex01simple;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "CARS")
 public class CarEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
+    
+    @Column(name = "CAR_MODEL")
     private String model;
+    
+    @Column(name = "MANUFACTURE_DATE")
     private Date manufactureDate;
 
     public Long getId() {

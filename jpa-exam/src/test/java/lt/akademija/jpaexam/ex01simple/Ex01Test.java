@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 public class Ex01Test {
 
     @Autowired
-    CarRepository repository;
+    CarRepositoryInterface repository;
 
     @Test
     public void crypticName1() {
