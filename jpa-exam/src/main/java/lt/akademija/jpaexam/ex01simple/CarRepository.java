@@ -2,10 +2,23 @@ package lt.akademija.jpaexam.ex01simple;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public class CarRepository {
+
+    private EntityManager em;
+    
+    @Autowired
+    public CarRepository(EntityManager em) {
+        this.em = em;
+    }
 
     /**
      * Searches database for all cars and returns list of them
@@ -13,7 +26,9 @@ public class CarRepository {
      */
 
     public List<CarEntity> findAll() {
-        throw new UnsupportedOperationException();
+        String queryTxt = "SELECT c FROM CarEntity c";
+        Query q = em.createQuery(queryTxt, CarEntity.class);
+        return q.getResultList();
     }
 
     /**
@@ -21,14 +36,21 @@ public class CarRepository {
      * If car is not present `null` is returned.
      */
     public CarEntity find(Long id) {
-        throw new UnsupportedOperationException();
+        return em.find(CarEntity.class, id);
     }
 
     /**
      * Saves or updates car information. When car with existing ID is passed then update operation is performed.
      * When id is not present new car is saved to database
      */
-    public CarEntity saveOrUpdate(CarEntity e) {
-        throw new UnsupportedOperationException();
+    
+    @Transactional
+    public CarEntity saveOrUpdate(CarEntity car) {
+        if (car.getId() != null && find(car.getId()) != null) {
+            return em.merge(car);
+        } else {
+            em.persist(car);
+            return car;
+        }
     }
 }

@@ -3,13 +3,10 @@ package lt.akademija.jpaexam.ex02associaions;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class LibraryRepository {
+public class LibraryRepository extends GenericBaseRepository<Library>{
 
-    public Library saveOrUpdate(Library e) {
-        throw new UnsupportedOperationException();
+    public LibraryRepository() {
+        super(Library.class);
     }
 
-    public Library find(Long id) {
-        throw new UnsupportedOperationException();
-    }
 }

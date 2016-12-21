@@ -3,14 +3,10 @@ package lt.akademija.jpaexam.ex02associaions;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BookRepository {
+public class BookRepository extends GenericBaseRepository<Book>{
 
-
-    public Book saveOrUpdate(Book e) {
-        throw new UnsupportedOperationException();
+    public BookRepository() {
+        super(Book.class);
     }
 
-    public Book find(Long bookId) {
-        throw new UnsupportedOperationException();
-    }
 }

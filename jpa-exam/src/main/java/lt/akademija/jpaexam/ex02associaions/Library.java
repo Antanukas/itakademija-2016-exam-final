@@ -2,9 +2,11 @@ package lt.akademija.jpaexam.ex02associaions;
 
 import java.util.List;
 
-public class Library {
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
-    private Long id;
+@Entity
+public class Library extends BaseEntity {
 
     /**
      * Simple name of the library
@@ -14,20 +16,15 @@ public class Library {
     /**
      * Readers are people registered to particular library.
      */
+    @OneToMany
     private List<LibraryReader> readers;
 
     /**
      * Holds all books that are available to borrow in this library
      */
+    @OneToMany
     private List<Book> books;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public List<LibraryReader> getReaders() {
         return readers;

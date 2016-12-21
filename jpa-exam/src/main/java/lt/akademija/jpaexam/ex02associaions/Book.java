@@ -3,21 +3,18 @@ package lt.akademija.jpaexam.ex02associaions;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
-    private Long id;
+@Entity
+public class Book extends BaseEntity {
+
     private String title;
     private String author;
 
+    @ManyToMany
     private List<LibraryReader> bookReaders;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
