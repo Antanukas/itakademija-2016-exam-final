@@ -9,6 +9,9 @@ public class SimpleDateProvider implements DateProvider {
 
     @Override
     public Date getCurrentDate() {
-        throw new UnsupportedOperationException("not implemented");
+        //throw new UnsupportedOperationException("not implemented");
+    	//DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    	Date date = new Date();
+    	return date;
     }
 }

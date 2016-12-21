@@ -7,8 +7,12 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 import java.util.List;
 
-public class SecurityServiceController {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+public class SecurityServiceController {
+	@Autowired
     private final SecurityEventsRepository repository;
 
     public SecurityServiceController(final SecurityEventsRepository repository) {
