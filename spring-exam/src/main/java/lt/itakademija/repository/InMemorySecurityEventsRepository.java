@@ -11,18 +11,20 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import org.springframework.stereotype.Repository;
+
 /**
  * In-memory security events repository. Internally, it uses
  * {@link SequenceNumberGenerator} and {@link DateProvider}.
  *
  * Created by mariusg on 2016.12.19.
  */
-
+@Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
 
 	private final SequenceNumberGenerator sequenceGenerator;
 	private final DateProvider dateProvider;
-	protected final List<RegisteredEvent> events = new ArrayList<RegisteredEvent>();
+	public final List<RegisteredEvent> events = new ArrayList<RegisteredEvent>();
 
 	public InMemorySecurityEventsRepository(SequenceNumberGenerator sequenceGenerator, DateProvider dateProvider) {
 		this.sequenceGenerator = sequenceGenerator;
