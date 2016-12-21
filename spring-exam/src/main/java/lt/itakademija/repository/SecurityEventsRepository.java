@@ -45,4 +45,7 @@ public interface SecurityEventsRepository {
      */
     RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate);
 
+	List<RegisteredEvent> getFilteredEvents(String finalDateFrom, String finalTimeFrom, String finalDateTill,
+			String finalTimeTill, String finalDescription, String finalLocation);
+
 }
