@@ -2,18 +2,25 @@ package lt.akademija.jpaexam.ex01simple;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CarRepository {
 
+	@Autowired
+	private EntityManager entityManager;
     /**
      * Searches database for all cars and returns list of them
      * @return
      */
 
     public List<CarEntity> findAll() {
-        throw new UnsupportedOperationException();
+		return entityManager.createQuery("SELECT c from CarEntity c").getResultList();
     }
 
     /**
@@ -21,14 +28,30 @@ public class CarRepository {
      * If car is not present `null` is returned.
      */
     public CarEntity find(Long id) {
-        throw new UnsupportedOperationException();
+    	return entityManager.find(CarEntity.class, id);
     }
 
     /**
      * Saves or updates car information. When car with existing ID is passed then update operation is performed.
      * When id is not present new car is saved to database
      */
-    public CarEntity saveOrUpdate(CarEntity e) {
-        throw new UnsupportedOperationException();
-    }
+	@Transactional
+	public CarEntity saveOrUpdate(CarEntity e) {
+		// throw new UnsupportedOperationException();
+		if (e.getId() == null) {
+			entityManager.persist(e);
+			return e;
+		} else {
+			CarEntity merged = entityManager.merge(e);
+			entityManager.persist(merged);
+			return merged;
+		}
+	}
+    
+	@Transactional
+	public int destroy(CarEntity e) {
+		Query query = entityManager.createQuery("DELETE FROM CarEntity c WHERE c.id = :id");
+		query.setParameter("id", e.getId());
+		return query.executeUpdate();
+	}
 }
