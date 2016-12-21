@@ -3,6 +3,13 @@ package lt.akademija.jpaexam.ex02associaions;
 import java.util.ArrayList;
 import java.util.List;
 
+import lt.akademija.jpaexam.ex02associaions.book.Book;
+import lt.akademija.jpaexam.ex02associaions.library.Library;
+import lt.akademija.jpaexam.ex02associaions.library.LibraryRepository;
+import lt.akademija.jpaexam.ex02associaions.library.LibraryService;
+import lt.akademija.jpaexam.ex02associaions.reader.LibraryReader;
+import lt.akademija.jpaexam.ex02associaions.reader.LibraryReaderAddress;
+import lt.akademija.jpaexam.ex02associaions.reader.LibraryReaderRepository;
 import lt.akademija.jpaexam.grader.Grader;
 import org.junit.Test;
 import org.junit.runner.RunWith;

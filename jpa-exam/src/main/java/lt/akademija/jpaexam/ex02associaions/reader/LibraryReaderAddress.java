@@ -1,11 +1,20 @@
-package lt.akademija.jpaexam.ex02associaions;
+package lt.akademija.jpaexam.ex02associaions.reader;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 
 public class LibraryReaderAddress {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String street;
     private String city;
     private String zipcode;
+    
+ 
 
     public Long getId() {
         return id;
