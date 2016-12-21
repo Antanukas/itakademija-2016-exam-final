@@ -1,19 +1,25 @@
 package lt.akademija.jpaexam.ex01simple;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class CarRepository {
 
+	@Autowired
+	private javax.persistence.EntityManager em;
     /**
      * Searches database for all cars and returns list of them
      * @return
      */
 
     public List<CarEntity> findAll() {
-        throw new UnsupportedOperationException();
+       List<CarEntity> carlist = new ArrayList<>();
+       carlist.add(em.find(CarEntity.class, getClass()));
+    		 return carlist;
     }
 
     /**
@@ -21,7 +27,11 @@ public class CarRepository {
      * If car is not present `null` is returned.
      */
     public CarEntity find(Long id) {
-        throw new UnsupportedOperationException();
+        CarEntity car = new CarEntity(id, null, null);
+        if(car.getId() == id){
+        	return car;
+        }
+        return null;
     }
 
     /**
