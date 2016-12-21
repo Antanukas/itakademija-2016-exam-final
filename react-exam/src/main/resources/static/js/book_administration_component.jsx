@@ -8,13 +8,13 @@ var BookAdministrationComponent = React.createClass({
     var submitButton;
     if (this.props.id) {
       title = 'Atnaujinama knyga # ' + this.props.id;
-      submitButton =  <button className="btn btn-success" onClick={this.props.onSaveClick} href="#/books">Edit</button>
+      submitButton =  <button className="btn btn-success" onClick={this.props.onUpdateClick} href="#/books">Edit</button>
 
     } else {
       title = 'Pridedama nauja knyga';
       submitButton = <button className="btn btn-success" onClick={this.props.onSaveClick} href="#/">Submit</button>
     };
-  
+
     return (
       <div className='col-sm-4'>
         <h2>{title}</h2>
@@ -58,8 +58,8 @@ var BookAdministrationComponent = React.createClass({
               type="text"
               className="form-control"
               id="exampleInputName2"
-              placeholder="Quantity"
-              value={this.props.value}
+              placeholder={this.props.quantity}
+              value={this.props.quantity}
               onChange={this.props.onQuantityChange}
               />
           </div>

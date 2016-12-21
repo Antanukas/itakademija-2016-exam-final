@@ -20,11 +20,17 @@ var BookAdministrationContainerEdit = React.createClass({
   //   })
   // },
   componentWillMount: function() {
-    var self = this;
-    axios.get('http://localhost:8080/api/books')
-      .then(function (response) {
-        self.setState({ books: response.data });
-      })
+     var self = this;
+     axios.get('/api/books/' + this.props.params.id)
+     .then(function(response){
+       self.setState({
+         id : response.data.id,
+         author: response.data.author,
+         title: response.data.title,
+         isbn: response.data.isbn,
+         quantity: response.data.quantity,
+       });
+     })
   },
   handleSaveClick: function(e) {
     var self = this;
@@ -51,7 +57,23 @@ var BookAdministrationContainerEdit = React.createClass({
     });
     e.preventDefault();
   },
-
+   handleUpdateClick: function(event) {
+    var self = this;
+    axios.put('/api/books/' + self.state.id,
+      {
+        id : self.state.id,
+        author: self.state.author,
+        title: self.state.title,
+        isbn: self.state.isbn,
+        quantity: self.state.quantity,})
+    .then(function(response){
+      console.log(response.data);
+      self.context.router.push('/');
+    })
+  },
+  handleCancelClick:function(){
+    this.context.router.push('/');
+  },
   handleTitleChange: function(e) {
     this.setState({ title: e.target.value });
   },
@@ -81,7 +103,7 @@ var BookAdministrationContainerEdit = React.createClass({
       <BookAdministrationComponent
         id={this.state.id}
         title={this.state.title}
-        authors={this.state.author}
+        author={this.state.author}
         isbn={this.state.isbn}
         quantity={this.state.quantity}
         onTitleChange={this.handleTitleChange}
@@ -89,6 +111,8 @@ var BookAdministrationContainerEdit = React.createClass({
         onIsbnChange={this.handleIsbnChange}
         onQuantityChange={this.handleQuantityChange}
         onSaveClick={this.handleSaveClick}
+        onUpdateClick={this.handleUpdateClick}
+        onCancelCLick={this.handleCancelClick}
       />
     );
   }

@@ -36,7 +36,9 @@ var BookAdministrationContainer = React.createClass({
     });
     e.preventDefault();
   },
-
+  handleCancelClick:function(){
+    this.context.router.push('/');
+  },
 
   handleTitleChange: function(e) {
     this.setState({ title: e.target.value });
@@ -64,7 +66,7 @@ var BookAdministrationContainer = React.createClass({
       <BookAdministrationComponent
         id={this.state.id}
         title={this.state.title}
-        authors={this.state.author}
+        author={this.state.author}
         isbn={this.state.isbn}
         quantity={this.state.quantity}
         onTitleChange={this.handleTitleChange}
@@ -72,6 +74,7 @@ var BookAdministrationContainer = React.createClass({
         onIsbnChange={this.handleIsbnChange}
         onQuantityChange={this.handleQuantityChange}
         onSaveClick={this.handleSaveClick}
+        onCancelCLick={this.handleCancelClick}
       />
     );
   }
