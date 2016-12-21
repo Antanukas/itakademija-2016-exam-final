@@ -1,7 +1,18 @@
 package lt.akademija.jpaexam.ex02associaions;
 
-public class LibraryReaderAddress {
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class LibraryReaderAddress {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@ManyToOne(fetch = FetchType.LAZY)
     private Long id;
     private String street;
     private String city;

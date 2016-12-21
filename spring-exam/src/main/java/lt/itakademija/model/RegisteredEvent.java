@@ -37,6 +37,11 @@ public final class RegisteredEvent {
     public Date getRegistrationDate() {
         return registrationDate;
     }
+    
+    public SeverityLevel setSeverityLevel(SeverityLevel severityLevel){
+        this.severityLevel =severityLevel;
+        return severityLevel;
+    }
 
     public SeverityLevel getSeverityLevel() {
         return severityLevel;

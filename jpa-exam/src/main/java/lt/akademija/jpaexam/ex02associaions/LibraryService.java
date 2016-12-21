@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 @Service
 public class LibraryService {
 
@@ -16,10 +17,14 @@ public class LibraryService {
     @Autowired
     private BookRepository bookRepository;
 
+    
+    @Transactional
     public Library getLibrary(Long id) {
         return libraryRepository.find(id);
     }
 
+    
+    @Transactional
     public Library createLibrary(Library l) {
         return libraryRepository.saveOrUpdate(l);
     }

@@ -7,28 +7,62 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/webapi/events")
 public class SecurityServiceController {
 
+    @Autowired
     private final SecurityEventsRepository repository;
 
-    public SecurityServiceController(final SecurityEventsRepository repository) {
+    @Autowired
+    public SecurityServiceController(@RequestBody final SecurityEventsRepository repository) {
         this.repository = repository;
     }
-
+    @GetMapping()
     public List<RegisteredEvent> getRegisteredEvents() {
-        throw new UnsupportedOperationException("not implemented");
+        return repository.getEvents(); 
     }
-
-    public RegisteredEvent createEvent(EventRegistration registrationData) {
-        throw new UnsupportedOperationException("not implemented");
+    
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public RegisteredEvent createEvent(@PathVariable  EventRegistration registrationData) {
+        return repository.create(registrationData);
     }
-
-    public RegisteredEvent deleteEvent(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+    
+    @DeleteMapping("/{eventId}")
+  
+    public RegisteredEvent deleteEvent(@PathVariable Long id) {
+        return repository.delete(id);
     }
-
-    public RegisteredEvent updateEvent(Long id, RegisteredEventUpdate updateData) {
-        throw new UnsupportedOperationException("not implemented");
+    
+    @PutMapping("/{eventId}")
+    public RegisteredEvent updateEvent(@RequestBody Long id, @RequestBody RegisteredEventUpdate updateData) {
+        return repository.update(id, updateData);
     }
-
+   /* @DateTimeFormat("MMddyyyy")
+    @GetMapping(value = "/spring-exam/webapi/events", params={fromDate}, params={toDate}, params)
+    @ResponseBody
+    public List<RegisteredEvent> getRegisteredEventsByDate() {
+        return repository.getEvents(); 
+    }*/
 }

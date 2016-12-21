@@ -53,6 +53,7 @@ public final class JavaCodingTask {
             SecurityEventsRepository sut = new InMemorySecurityEventsRepository(seqGen, dateProvider);
 
             // Exercise
+            
             EventRegistration eventRegistration = createEventRegistration(HIGH, "Test", "Test");
             RegisteredEvent createdEvent = sut.create(eventRegistration);
 

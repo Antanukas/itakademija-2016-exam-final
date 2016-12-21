@@ -2,8 +2,14 @@ package lt.akademija.jpaexam.ex01simple;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
+import javax.persistence.EntityManager;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@Transactional
 @Repository
 public class CarRepository {
 
@@ -11,9 +17,11 @@ public class CarRepository {
      * Searches database for all cars and returns list of them
      * @return
      */
+    @Autowired
+    private EntityManager em;
 
     public List<CarEntity> findAll() {
-        throw new UnsupportedOperationException();
+        return em.createQuery("SELECT c from CarEntity c").getResultList();
     }
 
     /**
@@ -21,7 +29,10 @@ public class CarRepository {
      * If car is not present `null` is returned.
      */
     public CarEntity find(Long id) {
-        throw new UnsupportedOperationException();
+        if ((em.find(CarEntity.class, id)) != null){
+            return (em.find(CarEntity.class, id));
+        }
+        return null;
     }
 
     /**
@@ -29,6 +40,13 @@ public class CarRepository {
      * When id is not present new car is saved to database
      */
     public CarEntity saveOrUpdate(CarEntity e) {
-        throw new UnsupportedOperationException();
+        if (e.getId() == null) {
+            em.persist(e);
+            return e;
+        } else {
+            CarEntity merged = em.merge(e);
+            em.persist(merged);
+            return merged;
+        }
     }
 }
