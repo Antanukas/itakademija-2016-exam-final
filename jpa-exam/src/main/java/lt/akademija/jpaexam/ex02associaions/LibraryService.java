@@ -16,10 +16,12 @@ public class LibraryService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Transactional
     public Library getLibrary(Long id) {
         return libraryRepository.find(id);
     }
 
+    @Transactional
     public Library createLibrary(Library l) {
         return libraryRepository.saveOrUpdate(l);
     }

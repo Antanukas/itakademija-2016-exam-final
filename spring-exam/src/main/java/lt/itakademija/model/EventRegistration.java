@@ -1,18 +1,33 @@
 package lt.itakademija.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
+@Component
 public final class EventRegistration {
 
-    private SeverityLevel severityLevel;
-
+    @NotNull
+    @NotBlank
+    @Size(min = 1, max = 100)
     private String location;
 
+    @NotNull
+    private SeverityLevel severityLevel;
+
+    @NotNull
+    @NotBlank
+    @Size(min = 1, max = 1000)
     private String description;
 
     public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
+
 
     public void setSeverityLevel(SeverityLevel severityLevel) {
         this.severityLevel = severityLevel;

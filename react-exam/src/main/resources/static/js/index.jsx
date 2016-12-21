@@ -2,6 +2,14 @@ var App = React.createClass({
   render: function() {
     return (
       <div style={{ paddingTop: '20px' }}>
+        <nav className="navbar navbar-default">
+          <div className="container-fluid">
+              <ul className="nav navbar-nav">
+                <li><a href="#/">Home<span className="sr-only">(current)</span></a></li>
+                <li><a href="#/create">Create Book<span className="sr-only">(current)</span></a></li>
+              </ul>
+          </div>
+        </nav>
         {this.props.children}
       </div>
     );
@@ -22,8 +30,9 @@ var hashHistory = ReactRouter.hashHistory;
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={HelloWorldComponent} />
-      <Route path="/hello-world" component={HelloWorldComponent} />
+      <IndexRoute component={ProductListContainer} />
+      <Route path="/create" component={CreateBookContainer} />
+      <Route path="/update/:id" component={UpdateProductContainer} />
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>
