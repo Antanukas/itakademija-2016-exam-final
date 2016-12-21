@@ -10,7 +10,6 @@ var BookCardComponent = React.createClass({
                     <p>{this.props.title}</p>
                     <p>{this.props.author}</p>
                     <p>{moment(this.props.publishedAt).format("YYYY-MM-DD")}</p>
-                    <p><button className="btn btn-primary" role="button">Update</button></p>
                   </div>
                 </div>
               </div>    

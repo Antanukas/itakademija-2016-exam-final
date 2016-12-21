@@ -24,8 +24,9 @@ import io.swagger.annotations.ApiParam;
 
 @RestController //Prideta
 @Api(value="Security service")
-@RequestMapping(value="/spring-exam/webapi/events")
+@RequestMapping(value="/webapi/events")
 @EnableAutoConfiguration
+//http://localhost:9092/swagger-ui.html
 public class SecurityServiceController {
 	
 	@Autowired //Prideta
@@ -50,7 +51,7 @@ public class SecurityServiceController {
     	return repository.create(registrationData);
     }
    
-    @RequestMapping(path="/{eventId}", method = RequestMethod.DELETE)
+    @RequestMapping(path="/{id}", method = RequestMethod.DELETE)
     @ApiOperation(value="Deletes registered events", notes="Deletes registered events by ID")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public RegisteredEvent deleteEvent(@ApiParam(value="Event ID", required=true)@PathVariable Long id) {
@@ -58,7 +59,7 @@ public class SecurityServiceController {
     }
     
     
-    @RequestMapping(path="/{eventId}", method = RequestMethod.PUT)
+    @RequestMapping(path="/{id}", method = RequestMethod.PUT)
     @ApiOperation(value="Updates registered events", notes="Updates registered events by ID")
     public RegisteredEvent updateEvent(@ApiParam(value="Event ID", required=true)Long id,
     		@ApiParam(value="Reg. Event update data", required=true)RegisteredEventUpdate updateData) {

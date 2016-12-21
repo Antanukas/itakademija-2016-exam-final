@@ -40,6 +40,7 @@ var AdminContainer = React.createClass({
               isbn: this.state.isbn,
               publishedAt: this.state.publishedAt
         }
+        
         axios.post('http://localhost:8080/api/books', body)
             .then(function (response) {
                 var p = response.data;

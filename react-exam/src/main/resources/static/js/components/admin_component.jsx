@@ -4,19 +4,9 @@ var PropTypes = React.PropTypes;
 
 
 var AdminComponent = function(props) {
-    
-    var title;
-    
-    if (props.id) {
-        title = 'Update book ID:' + props.id;
-    } else {
-        title = 'Add new book';
-    }
-    
-
         return (
                <div>
-                <h2>{title}</h2>
+                <h2>Admin</h2>
                 <form >
                   <div className="form-group">
                     <label>Title</label>
@@ -38,7 +28,6 @@ var AdminComponent = function(props) {
                     <label>Published:</label>
                     <input className="form-control" value={props.publishedAt} onChange={props.onPublishChange}/>
                   </div>
-                   
                   <button className="btn btn-success" onClick={props.onSaveClick}>Save</button>
                   <button className="btn btn-success" onClick={props.onCancelClick}>Cancel</button>
                 </form>

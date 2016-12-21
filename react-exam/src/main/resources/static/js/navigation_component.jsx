@@ -16,9 +16,6 @@ var Nav = React.createClass({
                    <li className="nav-item"> 
                         <Link to="/update" activeClassName="active" >Update book</Link>
                    </li>  
-                   
-                
-                
               </ul>
             </nav>
         </div>

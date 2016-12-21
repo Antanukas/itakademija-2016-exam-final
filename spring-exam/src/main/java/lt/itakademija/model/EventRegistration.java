@@ -21,7 +21,7 @@ public final class EventRegistration {
     @Length(min = 1, max =1000)
     private String description;
 
-    @NotNull
+    
     public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
@@ -30,26 +30,21 @@ public final class EventRegistration {
         this.severityLevel = severityLevel;
     }
 
-    @Nullable
-    @Length(min = 1, max =1000)
     public String getLocation() {
         return location;
     }
     
-    @Nullable
-    @Length(min = 1, max =1000)
+    
     public void setLocation(String location) {
         this.location = location;
     }
     
-    @Nullable
-	@Length(min = 1, max =1000)
+    
     public String getDescription() {
         return description;
     }
 	
-    @Nullable
-	@Length(min = 1, max =1000)
+
     public void setDescription(String description) {
         this.description = description;
     }

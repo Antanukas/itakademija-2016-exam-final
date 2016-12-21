@@ -11,7 +11,7 @@ public final class RegisteredEventUpdate {
     public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
-	@NotNull
+	
     public void setSeverityLevel(SeverityLevel severityLevel) {
         this.severityLevel = severityLevel;
     }
