@@ -22,8 +22,8 @@ import static org.hamcrest.CoreMatchers.is;
  * Created by mariusg on 2016.12.19.
  */
 public class SwaggerDocTask {
-
-    private String url = "http://localhost:9092/spring-exam/v2/api-docs";
+	//swagger
+    private String url = "http://localhost:9092/v2/api-docs";
 
     private static TestRestTemplate restTemplate;
 
