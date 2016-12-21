@@ -1,0 +1,8 @@
+lt.itakademija
+lt.itakademija.controller
+lt.itakademija.grader
+lt.itakademija.matchers
+lt.itakademija.model
+lt.itakademija.repository
+lt.itakademija.servlet
+lt.itakademija.util

@@ -1,6 +1,10 @@
 package lt.itakademija.repository;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import lt.itakademija.repository.SimpleDateProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Date provider.
@@ -14,6 +18,7 @@ public interface DateProvider {
      *
      * @return current date.
      */
+
     Date getCurrentDate();
 
 }

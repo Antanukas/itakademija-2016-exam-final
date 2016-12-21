@@ -7,8 +7,11 @@ import java.util.Date;
  */
 public class SimpleDateProvider implements DateProvider {
 
+	private Date date;
     @Override
     public Date getCurrentDate() {
-        throw new UnsupportedOperationException("not implemented");
+    	Date data = new Date();
+    	data.getDate();
+        return data ;
     }
 }

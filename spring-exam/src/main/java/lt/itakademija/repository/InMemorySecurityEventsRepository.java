@@ -4,6 +4,10 @@ import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
 
+import static lt.itakademija.model.SeverityLevel.HIGH;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -16,6 +20,8 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
     private final SequenceNumberGenerator sequenceGenerator;
 
     private final DateProvider dateProvider;
+
+    List<RegisteredEvent> list = new ArrayList<>();
 
     public InMemorySecurityEventsRepository(SequenceNumberGenerator sequenceGenerator, DateProvider dateProvider) {
         this.sequenceGenerator = sequenceGenerator;
@@ -30,22 +36,32 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
      */
     @Override
     public RegisteredEvent create(EventRegistration eventRegistration) {
-        throw new UnsupportedOperationException("not implemented");
+
+    	return null  ;
+        
     }
 
     @Override
     public List<RegisteredEvent> getEvents() {
-        throw new UnsupportedOperationException("not implemented");
+
+		return list;
+        
     }
 
     @Override
     public RegisteredEvent delete(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+    	
+    	List<RegisteredEvent> list = new ArrayList<>();
+    	list.remove(id);
+    	
+		return null;
     }
 
     @Override
     public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
-        throw new UnsupportedOperationException("not implemented");
+    	
+    	
+        return null;
     }
 
 }
