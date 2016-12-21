@@ -1,5 +1,6 @@
 package lt.itakademija.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import lt.itakademija.model.EventRegistration;
@@ -45,4 +46,13 @@ public interface SecurityEventsRepository {
      */
     RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate);
 
+    /**
+     * finds registered event.
+     *
+     * @param id event id
+     * @return event
+     */
+    public RegisteredEvent findOne(Long id);
+    
+    public List<RegisteredEvent> sortedEvents(Date dateFrom, Date dateTill, String location, String description);
 }
