@@ -1,14 +1,29 @@
-package lt.akademija.jpaexam.ex02associaions;
+package lt.akademija.jpaexam.ex02associaions.reader;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import lt.akademija.jpaexam.ex02associaions.book.Book;
+
+
 public class LibraryReader {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "libraryReader_id")
     private List<LibraryReaderAddress> addresses;
     private List<Book> borrowedBooks;
 

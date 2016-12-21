@@ -1,8 +1,13 @@
-package lt.akademija.jpaexam.ex02associaions;
+package lt.akademija.jpaexam.ex02associaions.library;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import lt.akademija.jpaexam.ex02associaions.book.Book;
+import lt.akademija.jpaexam.ex02associaions.book.BookRepository;
+import lt.akademija.jpaexam.ex02associaions.reader.LibraryReader;
+import lt.akademija.jpaexam.ex02associaions.reader.LibraryReaderRepository;
 
 @Service
 public class LibraryService {

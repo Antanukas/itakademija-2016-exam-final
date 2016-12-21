@@ -3,15 +3,23 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.annotation.Nullable;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public final class RegisteredEvent {
 
     private Long id;
 
     private Date registrationDate;
 
+
     private SeverityLevel severityLevel;
 
-    private String location;
+  
+
+	private String location;
 
     private String description;
 
@@ -37,15 +45,21 @@ public final class RegisteredEvent {
     public Date getRegistrationDate() {
         return registrationDate;
     }
-
+   
     public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
+ 
+    public void setSeverityLevel(SeverityLevel severityLevel) {
+  		this.severityLevel = severityLevel;
+  	}
+    
 
     public String getLocation() {
         return location;
     }
-
+    
+ 
     public String getDescription() {
         return description;
     }
