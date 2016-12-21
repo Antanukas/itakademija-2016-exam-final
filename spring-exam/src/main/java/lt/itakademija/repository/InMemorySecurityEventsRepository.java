@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * In-memory security events repository. Internally, it uses {@link SequenceNumberGenerator} and {@link DateProvider}.
@@ -42,7 +41,6 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
      *  This method must use DateProvider#getCurrentDate() for getting dates;
      */
     @Override
-    @Transactional
     public RegisteredEvent create(EventRegistration eventRegistration) {
         RegisteredEvent re = new RegisteredEvent(this.sequenceGenerator.getNext(),
         						this.dateProvider.getCurrentDate(),
@@ -56,14 +54,12 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 
     
     @Override
-    @Transactional(readOnly = true)
     public List<RegisteredEvent> getEvents() {
         return Collections.unmodifiableList(regEvents);
     	//throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
-    @Transactional
     public RegisteredEvent delete(Long id) {
         RegisteredEvent re = this.find(id);
         regEvents.remove(re);
@@ -72,7 +68,6 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
     }
 
     @Override
-    @Transactional
     public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
     	RegisteredEvent re = null;
     	for (int j = 0; j < regEvents.size(); j++) {
