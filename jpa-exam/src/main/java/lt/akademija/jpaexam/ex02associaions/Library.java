@@ -1,9 +1,11 @@
 package lt.akademija.jpaexam.ex02associaions;
 
+import javax.persistence.*;
 import java.util.List;
-
+@Entity
 public class Library {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     /**
@@ -14,11 +16,13 @@ public class Library {
     /**
      * Readers are people registered to particular library.
      */
+    @OneToMany
     private List<LibraryReader> readers;
 
     /**
      * Holds all books that are available to borrow in this library
      */
+    @OneToMany
     private List<Book> books;
 
     public Long getId() {

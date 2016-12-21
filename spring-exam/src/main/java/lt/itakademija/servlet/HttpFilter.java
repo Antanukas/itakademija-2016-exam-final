@@ -10,6 +10,7 @@ import java.io.IOException;
  *
  * @author mariusg
  */
+
 public abstract class HttpFilter implements Filter {
 
     @Override

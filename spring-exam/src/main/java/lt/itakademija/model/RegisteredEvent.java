@@ -1,18 +1,34 @@
 package lt.itakademija.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import org.springframework.stereotype.Component;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
-
+@Component
+@ApiModel(description="Registered Event")
 public final class RegisteredEvent {
 
+    @NotNull
+    @ApiModelProperty(value = "event id")
     private Long id;
 
+    @NotNull
+    @ApiModelProperty(value = "registration date")
     private Date registrationDate;
 
+    @NotNull
+    @ApiModelProperty(value = "severity level id")
     private SeverityLevel severityLevel;
 
+    @NotNull
+    @ApiModelProperty(value = "event locaiton")
     private String location;
 
+    @NotNull
+    @ApiModelProperty(value = "event description")
     private String description;
 
     public RegisteredEvent() {

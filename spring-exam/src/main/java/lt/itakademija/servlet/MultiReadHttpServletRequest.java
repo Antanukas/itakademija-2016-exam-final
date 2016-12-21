@@ -11,7 +11,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public final class MultiReadHttpServletRequest extends HttpServletRequestWrapper {
+public final class
+MultiReadHttpServletRequest extends HttpServletRequestWrapper {
 
     private final byte[] bodyBytes;
 

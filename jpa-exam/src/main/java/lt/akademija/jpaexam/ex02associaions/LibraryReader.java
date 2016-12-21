@@ -1,15 +1,20 @@
 package lt.akademija.jpaexam.ex02associaions;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public class LibraryReader {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstName;
     private String lastName;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<LibraryReaderAddress> addresses;
+
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Book> borrowedBooks;
 
     public Long getId() {
@@ -56,6 +61,11 @@ public class LibraryReader {
     }
 
     public void addBorrowedBook(Book b) {
-        throw new UnsupportedOperationException();
+        if (borrowedBooks == null) {
+            borrowedBooks = new ArrayList<>();
+        }
+        borrowedBooks.add(b);
+        b.addBookReader(this);
+
     }
 }
