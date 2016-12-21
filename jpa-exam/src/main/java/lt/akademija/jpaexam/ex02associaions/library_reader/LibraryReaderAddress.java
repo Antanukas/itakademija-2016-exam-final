@@ -1,10 +1,28 @@
-package lt.akademija.jpaexam.ex02associaions;
+package lt.akademija.jpaexam.ex02associaions.library_reader;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "LIBRARY_READER_ADDRESS")
 public class LibraryReaderAddress {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
     private Long id;
+
+    @Column(name = "STREET")
     private String street;
+
+    @Column(name = "CITY")
     private String city;
+
+    @Column(name = "ZIP_CODE")
     private String zipcode;
 
     public Long getId() {
