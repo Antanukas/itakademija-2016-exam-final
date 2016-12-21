@@ -3,16 +3,32 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import io.swagger.annotations.ApiModelProperty;
+
 public final class RegisteredEvent {
 
+	@NotBlank
+	@ApiModelProperty(value = "event id")
     private Long id;
 
+	@NotNull
+	@ApiModelProperty(value = "registration date")
     private Date registrationDate;
 
+	@NotNull
+	@ApiModelProperty(value = "severity level")
     private SeverityLevel severityLevel;
 
+	@NotBlank
+	@ApiModelProperty(value = "event location")
     private String location;
 
+	@NotBlank
+	@ApiModelProperty(value = "event description")
     private String description;
 
     public RegisteredEvent() {
