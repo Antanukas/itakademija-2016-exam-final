@@ -57,15 +57,25 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 
     @Override
     public RegisteredEvent delete(Long id) {
-    	RegisteredEvent event = new RegisteredEvent(id, null, null, null, null);
-    	this.eventList.remove(event);
-		return event;
+    	RegisteredEvent event = new RegisteredEvent(id, dateProvider.getCurrentDate(), null, null,null);
+    	if(id==event.getId()){
+	    	this.eventList.remove(event);
+			return event;
+    	}
+    	else{
+    		return event;
+    	}
     	
     }
 
     @Override
     public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
-        throw new UnsupportedOperationException("not implemented");
+    	SeverityLevel level = registeredEventUpdate.getSeverityLevel();
+		Date date = dateProvider.getCurrentDate();
+				
+		RegisteredEvent event = new RegisteredEvent(id,date,level,null,null);
+		this.eventList.set(eventList.indexOf(registeredEventUpdate), event);
+		return event;
     }
 
 }
