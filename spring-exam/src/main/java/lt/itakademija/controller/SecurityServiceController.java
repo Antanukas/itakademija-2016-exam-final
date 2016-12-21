@@ -5,6 +5,8 @@ import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
 import lt.itakademija.repository.SecurityEventsRepository;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SecurityServiceController {
@@ -16,19 +18,25 @@ public class SecurityServiceController {
     }
 
     public List<RegisteredEvent> getRegisteredEvents() {
-        throw new UnsupportedOperationException("not implemented");
+    	List<RegisteredEvent> list = new ArrayList();
+    	for (RegisteredEvent dum : list) {
+    		return list;
+    		   }
+        return list;
     }
 
     public RegisteredEvent createEvent(EventRegistration registrationData) {
-        throw new UnsupportedOperationException("not implemented");
+        return null;
     }
 
     public RegisteredEvent deleteEvent(Long id) {
-        throw new UnsupportedOperationException("not implemented");
+    	List<RegisteredEvent> list = new LinkedList<>();
+    	list.remove(id);
+		return null;
     }
 
     public RegisteredEvent updateEvent(Long id, RegisteredEventUpdate updateData) {
-        throw new UnsupportedOperationException("not implemented");
+        return null;
     }
 
 }

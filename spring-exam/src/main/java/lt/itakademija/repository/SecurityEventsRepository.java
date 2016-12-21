@@ -5,6 +5,7 @@ import java.util.List;
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
+import lt.itakademija.model.SeverityLevel;
 
 /**
  * Security events repository.
@@ -18,6 +19,7 @@ public interface SecurityEventsRepository {
      *
      * @return list of registered events.
      */
+
     List<RegisteredEvent> getEvents();
 
     /**
