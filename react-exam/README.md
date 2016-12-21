@@ -33,8 +33,8 @@ Sukurkite knygų sąrašo puslapį.
 - Atėjus į namų puslapį (localhost:8080) turime matyti knygų sąrašą.
 Užkraukite knygas iš `GET /api/books` (5 taškai)
 - Knygų sąraše turi matytis: id, pavadinimas, autorius. (1 taškas)
-- Turi būti galimybė paspaudus mygtuką keliauti į knygos [kūrimo puslapį](#knygos-kūrimas). (1 taškas)
-- Turi būti galimybė paspaudus mygtuką keliauti į knygos [atnaujinimo puslapį](#knygos-atnaujinimas). (1 taškas)
+- Turi būti galimybė paspaudus mygtuką keliauti į knygos[kūrimo puslapį]((#)knygos-kūrimas). (1 taškas)
+- Turi būti galimybė paspaudus mygtuką keliauti į knygos[atnaujinimo puslapį]((#)knygos-atnaujinimas). (1 taškas)
 
 ##### Knygos kūrimas (10 taškų)
 

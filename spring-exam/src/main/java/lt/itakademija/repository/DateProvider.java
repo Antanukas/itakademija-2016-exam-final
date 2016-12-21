@@ -9,11 +9,10 @@ import java.util.Date;
  */
 public interface DateProvider {
 
-    /**
-     * Returns current date.
-     *
-     * @return current date.
-     */
-    Date getCurrentDate();
-
+	/**
+	 * Returns current date.
+	 *
+	 * @return current date.
+	 */
+	Date getCurrentDate();
 }
