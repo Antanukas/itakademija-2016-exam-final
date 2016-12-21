@@ -2,6 +2,8 @@ package lt.itakademija.repository;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
@@ -11,6 +13,7 @@ import lt.itakademija.model.RegisteredEventUpdate;
  * 
  * @author mariusg
  */
+
 public interface SecurityEventsRepository {
 
     /**
