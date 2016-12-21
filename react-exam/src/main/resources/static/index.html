@@ -2,12 +2,25 @@
 <head>
   <title>E-Shop </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <meta charset="utf-8">
+
   <link
     rel="stylesheet"
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous"
   >
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
 </head>
 <body>
   <div id="root" class="container"></div>
@@ -18,7 +31,21 @@
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <script type="text/babel" src="/js/hello_world_component.jsx"></script>
-  <script type="text/babel" src="/js/index.jsx"></script>
+  <script type="text/babel" src="/js/components/BookFormComponent.js"></script>
+  <script type="text/babel" src="/js/components/BookCardComponent.js"></script>
+  <script type="text/babel" src="/js/components/BooksListComponent.js"></script>
+  <script type="text/babel" src="/js/components/Header.js"></script>
+  <script type="text/babel" src="/js/components/Footer.js"></script>
+
+  <script type="text/babel" src="/js/containers/EditBookContainer.js"></script>
+  <script type="text/babel" src="/js/containers/NewBookContainer.js"></script>
+  <script type="text/babel" src="/js/containers/BooksListContainer.js"></script>
+  <script type="text/babel" src="/js/containers/HomePageContainer.js"></script>
+
+  <script type="text/babel" src="/js/App.js"></script>
+  <script type="text/babel" src="/js/config/NoMatch.js"></script>
+  <script type="text/babel" src="/js/config/Routes.js"></script>
+
+  <script type="text/babel" src="/js/index.js"></script>
 </body>
 </html>

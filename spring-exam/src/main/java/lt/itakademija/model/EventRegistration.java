@@ -2,18 +2,29 @@ package lt.itakademija.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Required;
+
 public final class EventRegistration {
 
+	@NotNull
     private SeverityLevel severityLevel;
 
+	@NotNull
+	@Length(min = 1, max = 100)
     private String location;
 
+	@NotNull
+	@Length(min = 1, max = 1000)
     private String description;
 
     public SeverityLevel getSeverityLevel() {
         return severityLevel;
     }
 
+    @Required
     public void setSeverityLevel(SeverityLevel severityLevel) {
         this.severityLevel = severityLevel;
     }
@@ -21,7 +32,8 @@ public final class EventRegistration {
     public String getLocation() {
         return location;
     }
-
+    
+    @Required
     public void setLocation(String location) {
         this.location = location;
     }
@@ -30,6 +42,7 @@ public final class EventRegistration {
         return description;
     }
 
+    @Required
     public void setDescription(String description) {
         this.description = description;
     }

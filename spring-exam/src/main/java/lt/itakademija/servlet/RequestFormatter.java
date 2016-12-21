@@ -6,12 +6,14 @@ import java.util.Collections;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
+import org.springframework.stereotype.Component;
 
 /**
  * Formatter for HTTP requests.
  * 
  * @author mariusg
  */
+@Component
 public final class RequestFormatter {
 
     /**
