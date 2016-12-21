@@ -3,6 +3,8 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
 public final class RegisteredEvent {
 
     private Long id;
@@ -11,6 +13,7 @@ public final class RegisteredEvent {
 
     private SeverityLevel severityLevel;
 
+    @NotNull
     private String location;
 
     private String description;
@@ -48,6 +51,10 @@ public final class RegisteredEvent {
 
     public String getDescription() {
         return description;
+    }
+    
+    public void setSeverityLevel(SeverityLevel severityLevel){
+    	this.severityLevel = severityLevel; 
     }
 
     @Override

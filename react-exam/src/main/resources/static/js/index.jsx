@@ -1,3 +1,4 @@
+
 var App = React.createClass({
   render: function() {
     return (
@@ -7,6 +8,21 @@ var App = React.createClass({
     );
   }
 });
+
+var SomePageComponent = function( props ) {
+    var goRoot = function( e ) {
+        props.router.push( "/" );
+    }
+    return (
+        <div>
+            At route: {props.router.getCurrentLocation().pathname}
+            <button onClick={goRoot}>Go to Root route</button>
+            <pre>
+                {JSON.stringify( props, null, 2 )}
+            </pre>
+        </div>
+    );
+};
 
 var NoMatch = React.createClass({
   render: function() {
@@ -25,6 +41,7 @@ ReactDOM.render((
       <IndexRoute component={HelloWorldComponent} />
       <Route path="/hello-world" component={HelloWorldComponent} />
       <Route path="*" component={NoMatch}/>
+        <p>alalalalalal</p>
     </Route>
   </Router>
-), document.getElementById('root'));
+), document.getElementById("root"));

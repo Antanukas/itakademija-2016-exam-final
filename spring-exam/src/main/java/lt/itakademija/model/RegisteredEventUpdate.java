@@ -1,7 +1,10 @@
 package lt.itakademija.model;
 
-public final class RegisteredEventUpdate {
+import javax.validation.constraints.NotNull;
 
+public final class RegisteredEventUpdate {
+	
+	@NotNull
     private SeverityLevel severityLevel;
 
     public SeverityLevel getSeverityLevel() {
