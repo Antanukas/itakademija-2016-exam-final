@@ -4,10 +4,24 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
+
 
 @Entity
 public class CarEntity {
+	
+	public CarEntity(Long id, String model, Date manufactureDate) {
+		super();
+		this.id = id;
+		this.model = model;
+		this.manufactureDate = manufactureDate;
+	}
+
+	public CarEntity() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Id
     private Long id;
     private String model;
