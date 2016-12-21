@@ -1,5 +1,3 @@
-
-
 var ProductAdministrationContainer = React.createClass({
     getInitialState: function () {
         return {
