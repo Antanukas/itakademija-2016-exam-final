@@ -1,20 +1,34 @@
 package lt.akademija.jpaexam.ex02associaions;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class Library {
 
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     /**
      * Simple name of the library
      */
+//	@Column
     private String name;
 
     /**
      * Readers are people registered to particular library.
      */
+	
     private List<LibraryReader> readers;
+
 
     /**
      * Holds all books that are available to borrow in this library
