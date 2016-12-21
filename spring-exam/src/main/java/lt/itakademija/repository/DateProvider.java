@@ -3,8 +3,6 @@ package lt.itakademija.repository;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-
 /**
  * Date provider.
  *

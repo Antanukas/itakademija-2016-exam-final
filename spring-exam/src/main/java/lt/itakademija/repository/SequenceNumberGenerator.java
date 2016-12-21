@@ -1,7 +1,6 @@
 package lt.itakademija.repository;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 /**
  * Represents sequence number generator.

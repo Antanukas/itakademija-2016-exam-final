@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 /**
- * In-memory security events repository. Internally, it uses
  * {@link SequenceNumberGenerator} and {@link DateProvider}.
  *
  * Created by mariusg on 2016.12.19.

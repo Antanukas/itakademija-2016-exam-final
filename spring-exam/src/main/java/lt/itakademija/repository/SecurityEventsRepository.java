@@ -2,7 +2,6 @@ package lt.itakademija.repository;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import lt.itakademija.model.EventRegistration;
