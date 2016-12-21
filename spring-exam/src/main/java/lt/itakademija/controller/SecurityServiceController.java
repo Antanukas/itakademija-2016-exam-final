@@ -44,7 +44,7 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
 	
-	@GetMapping(path = "{eventId}")
+	@GetMapping(path = "/{eventId}")
 	@ResponseStatus(value = HttpStatus.OK)
 	@ApiOperation(value = "Get event", notes = "Returns registered events. Custom method by Andrius Sareika")
     public RegisteredEvent getRegisteredEvent(@ApiParam(value = "RegisteredEvent ID", required = true)
@@ -63,7 +63,7 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
 
-	@DeleteMapping(path = "{eventId}")
+	@DeleteMapping(path = "/{eventId}")
 	@ResponseStatus(value = HttpStatus.OK)
 	@ApiOperation(value = "Delete event", notes = "Deletes registered event.")
     public RegisteredEvent deleteEvent(@ApiParam(value = "RegisteredEvent ID", required = true)
@@ -72,7 +72,7 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
 
-    @PutMapping(path = "{eventId}")
+    @PutMapping(path = "/{eventId}")
     @ResponseStatus(value = HttpStatus.OK)
     @ApiOperation(value = "Update event", notes = "Updates registered event.")
     public RegisteredEvent updateEvent(@ApiParam(value = "RegisteredEvent ID", required = true)
