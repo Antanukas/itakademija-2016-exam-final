@@ -10,10 +10,10 @@ public final class EventRegistration {
 	@NotNull
     private SeverityLevel severityLevel;
     @NotNull
-	@Length(min = 1, max = 30)
+	@Length(min = 1, max = 100)
     private String location;
     @NotNull
-	@Length(min = 1, max = 30)
+	@Length(min = 1, max = 1000)
     private String description;
 
     public SeverityLevel getSeverityLevel() {

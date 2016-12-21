@@ -47,11 +47,13 @@ public class SecurityServiceController {
     }
     
     //@GetMapping
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(value="/{filterinCriteria}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get all registered events", notes = "Returns a list of all rgistered events with their information.")
-    public List<RegisteredEvent> getRegisteredEvents() {
-        return repository.getEvents();
+    public List<RegisteredEvent> getRegisteredEvents(@PathVariable final String filterinCriteria) {
+    	String[] requestDetails = filterinCriteria.split("&");
+
+    	return repository.getEvents();
     	//throw new UnsupportedOperationException("not implemented");
     }
     
@@ -68,8 +70,9 @@ public class SecurityServiceController {
     @RequestMapping(value="/", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Deletes a specific event", notes = "Deletes an avent from database based on the supplied event id.")
-    public RegisteredEvent deleteEvent(@ApiParam(value = "Event id", required = true) Long id) {
-        return repository.delete(id);
+    public RegisteredEvent deleteEvent(@ApiParam(value = "Event id", required = true) String id) {
+    	Long idToLookFor = Long.parseLong(id);
+    	return repository.delete(idToLookFor);
         //throw new UnsupportedOperationException("not implemented");
     }
     
@@ -77,8 +80,9 @@ public class SecurityServiceController {
     @RequestMapping(value="/", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Updates an event", notes = "Updates and event that already exists in the database.")
-    public RegisteredEvent updateEvent(@ApiParam(value = "Event id", required = true) Long id, @ApiParam(value = "Data of event to bu updated", required = true) RegisteredEventUpdate updateData) {
-        return repository.update(id, updateData);
+    public RegisteredEvent updateEvent(@ApiParam(value = "Event id", required = true) String id, @ApiParam(value = "Data of event to bu updated", required = true) RegisteredEventUpdate updateData) {
+    	Long idToLookFor = Long.parseLong(id);
+    	return repository.update(idToLookFor, updateData);
     	//throw new UnsupportedOperationException("not implemented");
     }
 
