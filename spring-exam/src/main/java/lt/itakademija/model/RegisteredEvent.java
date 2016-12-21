@@ -3,16 +3,30 @@ package lt.itakademija.model;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Required;
+
 public final class RegisteredEvent {
 
+	@NotNull
+	@Min(1L)
 	private Long id;
 
+	@NotNull
 	private Date registrationDate;
 
+	@NotNull
 	private SeverityLevel severityLevel;
 
+	@NotNull
+	@Length(min = 1, max = 100)
 	private String location;
-
+	
+	@NotNull
+	@Length(min = 1, max = 1000)
 	private String description;
 
 	public RegisteredEvent() {
@@ -47,6 +61,7 @@ public final class RegisteredEvent {
 		return description;
 	}
 
+	@Required
 	public void setSeverityLevel(SeverityLevel severityLevel) {
 		this.severityLevel = severityLevel;
 	}

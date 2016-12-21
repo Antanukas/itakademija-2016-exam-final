@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by mariusg on 2016.12.19.
  */
-//@Component
-@Repository
+@Component
+//@Repository
 public final class SimpleSequenceNumberGenerator implements SequenceNumberGenerator {
 	
 	private Long id = 0L;

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by mariusg on 2016.12.19.
  */
-//@Component
-@Repository
+@Component
+//@Repository
 public class SimpleDateProvider implements DateProvider {
 
     @Override
