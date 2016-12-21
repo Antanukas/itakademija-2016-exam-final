@@ -29,11 +29,11 @@ var IndexRoute = ReactRouter.IndexRoute;
 
 ReactDOM.render((
     <Router history={ReactRouter.hashHistory}>
-      <Route path="/" component={App}>
+      <Route path="/" component={Buttons}>
         <IndexRoute component={ProductListPage} />
         <Route path="/products" component={ProductListPage} />
         <Route path="/admin/products/new" component={ProductAdministrationContainer} />
-        <Route path="/admin/products/:id" component={ProductAdministrationContainer} />
+        <Route name="update" path="/admin/products/:id" component={ProductAdministrationContainer} />
         <Route path="*" component={NoMatch}/>
       </Route>
     </Router>

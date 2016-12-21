@@ -1,25 +1,21 @@
+var Link = ReactRouter.Link;
+
 var PropTypes = React.PropTypes;
 
 var ProductAdministrationComponent = function(props) {
     var title;
     var saveButton;
     if (props.id) {
-        title = 'Atnaujinamas produktas ' + props.id;
-        saveButton = <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Save</button>
+        title = 'Updating product number : ' + props.id;
 
     } else {
-        title = 'Kuriamas naujas produktas';
-        saveButton = <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Save</button>
+        title = 'Creating new product';
 
     }
     return (
         <div>
             <h2>{title}</h2>
             <form>
-                <div className="form-group">
-                    <label>Id</label>
-                    <input className="form-control" value={props.id} onChange={props.onIdChange} />
-                </div>
                 <div className="form-group">
                     <label>ISBN</label>
                     <input className="form-control" value={props.isbn} onChange={props.onIsbnChange} />
@@ -36,11 +32,12 @@ var ProductAdministrationComponent = function(props) {
                     <label>Quantity</label><input className="form-control" value={props.quantity}
                                                   onChange={props.onQuantityChange}/>
                 </div>
-                <div className="form-group">
-                    <label>Published At</label>
-                    <input className="form-control" value={props.publishedAt} onChange={props.onPublishedAtChange} />
-                </div>
-                {saveButton}
+                <Link to="/">
+                <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Save</button>
+                </Link>
+                <Link to="/">
+                    <button className="btn btn-danger" style={{ marginRight: '20px' }} role="button">Cancel</button>
+                </Link>
             </form>
         </div>
     );

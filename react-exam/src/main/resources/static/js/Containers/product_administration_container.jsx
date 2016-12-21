@@ -1,3 +1,4 @@
+
 var ProductAdministrationContainer = React.createClass({
     getInitialState: function() {
         return {
@@ -20,7 +21,8 @@ var ProductAdministrationContainer = React.createClass({
             quantity: this.state.quantity,
             publishedAt:this.state.publishedAt
         }
-        axios.post('http://localhost:8080/api/books', body)
+
+        axios.post('http://localhost:8080/api/books/', body)
             .then(function (response) {
                 var p = response.data;
                 self.setState({
@@ -31,7 +33,6 @@ var ProductAdministrationContainer = React.createClass({
                     quantity: p.quantity,
                     publishedAt: p.publishedAt
                 });
-                self.props.router.push('/products');
             });
         e.preventDefault();
     },

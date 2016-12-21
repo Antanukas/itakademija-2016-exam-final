@@ -1,4 +1,7 @@
+var Link = ReactRouter.Link;
+
 var PropTypes = React.PropTypes;
+
 
 var styles = {
     thumbnail: {
@@ -12,15 +15,17 @@ var styles = {
 
 var ProductCardComponent = React.createClass({
     render: function() {
+        var linkTo = "/admin/products/" + this.props.id;
         return (
-            <div className="col-sm-6 col-md-4">
+            <div className="col-sm-6 col-md-4" >
                 <div className="thumbnail" style={styles.thumbnail}>
-                    <div className="caption">
+                    <div className="caption" style={{height: 275, weight : 150} }>
                         <h3>{this.props.title}</h3>
                         <p>{this.props.author}</p>
                         <p>{this.props.id} </p>
-                        <p><button className="btn btn-primary" role="button">Details</button></p>
+                        <p>{moment(this.props.publishedAt).format('MM/DD/YYYY')}</p>
                     </div>
+                    <Link to={linkTo}>UPDATE</Link>
                 </div>
             </div>
         );
