@@ -6,6 +6,7 @@ var BookComponent = React.createClass( {
         return (
 
             <div>
+                <div>{this.props.id} test0</div>
                 <div>{this.props.title} test1</div>
                 <div>{this.props.author} test2</div>
             </div>
@@ -15,6 +16,7 @@ var BookComponent = React.createClass( {
 });
 
 BookComponent.propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
 }
@@ -38,11 +40,12 @@ var BookListContainer = React.createClass( {
     },
     componentWillMount: function() {
         var self = this;
-        console.log( "testas1.5" );
+        console.log( "noriu responso.." );
         axios.get( 'http://localhost:8080/api/books' )
             .then( function( response ) {
                 self.setState( { books: response.data });
                 console.log( response.data );
+                console.log("response?");
             })
 
     },
@@ -51,9 +54,9 @@ var BookListContainer = React.createClass( {
     }
 });
 
-/*BookListComponent.propTypes = {
+BookListComponent.propTypes = {
         books: React.PropTypes.array.isRequired,
-}*/
+}
 
 
 

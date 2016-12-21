@@ -34,7 +34,20 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
         this.sequenceGenerator = sequenceGenerator;
         this.dateProvider = dateProvider;
     }
-
+    
+    // search for event according to provided event ID
+    public RegisteredEvent getEventDetails(String id){
+    	RegisteredEvent eventToReturn = null;
+    	Long idToLookFor = Long.parseLong(id);
+    	for(RegisteredEvent event : eventList){
+    		if(idToLookFor == event.getId()){
+    			eventToReturn = event;
+    		}
+    	}
+    	return eventToReturn;
+    }
+    
+    
     /*
      *  Notes for implementation:
      *  

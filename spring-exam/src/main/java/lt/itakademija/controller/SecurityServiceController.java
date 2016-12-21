@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import io.swagger.annotations.ApiParam;
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
+import lt.itakademija.repository.InMemorySecurityEventsRepository;
 import lt.itakademija.repository.SecurityEventsRepository;
 
 @RestController
@@ -31,6 +33,17 @@ public class SecurityServiceController {
 
     public SecurityServiceController(final SecurityEventsRepository repository) {
         this.repository = repository;
+    }
+    
+    private InMemorySecurityEventsRepository repo;
+    
+    //@GetMapping
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation(value = "Get information about event", notes = "Returns information about an event according to a provided id")
+    public RegisteredEvent getEventDetails(@PathVariable final String id) {
+        return repo.getEventDetails(id);
+    	//throw new UnsupportedOperationException("not implemented");
     }
     
     //@GetMapping
