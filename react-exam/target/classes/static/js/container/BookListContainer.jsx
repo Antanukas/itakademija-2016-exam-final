@@ -22,9 +22,8 @@ var BookListContainer = React.createClass({
 
   render: function () {
     return (
-      <book_list_component
-        books = {this.state.books}
-        onDetailsClick = {this.handleDetailsClick}
+      <BookListContainer
+        Books = {this.state.Books}
         />);
   }
 });
