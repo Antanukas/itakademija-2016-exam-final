@@ -1,6 +1,6 @@
 var PropTypes = React.PropTypes;
 
-var ProductListComponent = function(props) {
+var ProductListComponent = function (props) {
     var productCards = props.products.map(function (product, index) {
         return (
             <ProductCardComponent

@@ -2,7 +2,7 @@ var Link = ReactRouter.Link;
 
 var PropTypes = React.PropTypes;
 
-var ProductAdministrationComponent = function(props) {
+var ProductAdministrationComponent = function (props) {
     var title;
     var saveButton;
     if (props.id) {
@@ -18,7 +18,7 @@ var ProductAdministrationComponent = function(props) {
             <form>
                 <div className="form-group">
                     <label>ISBN</label>
-                    <input className="form-control" value={props.isbn} onChange={props.onIsbnChange} />
+                    <input className="form-control" value={props.isbn} onChange={props.onIsbnChange}/>
                 </div>
                 <div className="form-group">
                     <label>Title</label>
@@ -26,17 +26,18 @@ var ProductAdministrationComponent = function(props) {
                 </div>
                 <div className="form-group">
                     <label>Author</label>
-                    <input className="form-control" value={props.author} onChange={props.onAuthorChange} />
+                    <input className="form-control" value={props.author} onChange={props.onAuthorChange}/>
                 </div>
                 <div className="form-group">
                     <label>Quantity</label><input className="form-control" value={props.quantity}
                                                   onChange={props.onQuantityChange}/>
                 </div>
                 <Link to="/">
-                <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Save</button>
+                    <button className="btn btn-success" style={{marginRight: '20px'}} onClick={props.onSaveClick}>Save
+                    </button>
                 </Link>
                 <Link to="/">
-                    <button className="btn btn-danger" style={{ marginRight: '20px' }} role="button">Cancel</button>
+                    <button className="btn btn-danger" style={{marginRight: '20px'}} role="button">Cancel</button>
                 </Link>
             </form>
         </div>

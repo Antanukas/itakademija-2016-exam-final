@@ -1,6 +1,7 @@
 
+
 var ProductAdministrationContainer = React.createClass({
-    getInitialState: function() {
+    getInitialState: function () {
         return {
             id: this.props.params.id,
             isbn: '',
@@ -11,7 +12,7 @@ var ProductAdministrationContainer = React.createClass({
         };
     },
 
-    handleSaveClick: function(e) {
+    handleSaveClick: function (e) {
         var self = this;
         var body = {
             id: this.state.id,
@@ -19,7 +20,7 @@ var ProductAdministrationContainer = React.createClass({
             title: this.state.title,
             author: this.state.author,
             quantity: this.state.quantity,
-            publishedAt:this.state.publishedAt
+            publishedAt: this.state.publishedAt
         }
 
         axios.post('http://localhost:8080/api/books/', body)
@@ -34,34 +35,34 @@ var ProductAdministrationContainer = React.createClass({
                     publishedAt: p.publishedAt
                 });
             });
-        e.preventDefault();
+        self.props.router.push("/");
     },
 
-    handleIdChange: function(e) {
-        this.setState({ id: e.target.value });
+    handleIdChange: function (e) {
+        this.setState({id: e.target.value});
     },
 
-    handleIsbnChange: function(e) {
-        this.setState({ isbn: e.target.value });
+    handleIsbnChange: function (e) {
+        this.setState({isbn: e.target.value});
     },
 
-    handleTitleChange: function(e) {
-        this.setState({ title: e.target.value });
+    handleTitleChange: function (e) {
+        this.setState({title: e.target.value});
     },
 
-    handleAuthorChange: function(e) {
-        this.setState({ author: e.target.value });
+    handleAuthorChange: function (e) {
+        this.setState({author: e.target.value});
     },
 
-    handleQuantityChange: function(e) {
-        this.setState({ quantity: e.target.value });
+    handleQuantityChange: function (e) {
+        this.setState({quantity: e.target.value});
     },
 
-    handlePublishedAtChange: function(e) {
-        this.setState({ publishedAt: e.target.value });
+    handlePublishedAtChange: function (e) {
+        this.setState({publishedAt: e.target.value});
     },
 
-    render: function() {
+    render: function () {
         return (
             <ProductAdministrationComponent
                 id={this.state.id}
