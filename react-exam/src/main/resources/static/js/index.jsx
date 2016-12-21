@@ -22,7 +22,7 @@ var hashHistory = ReactRouter.hashHistory;
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={HelloWorldComponent} />
+      <IndexRoute component={BookListContainer} />
       <Route path="/hello-world" component={HelloWorldComponent} />
       <Route path="*" component={NoMatch}/>
     </Route>

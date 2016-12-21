@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,12 @@ public class SecurityServiceController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public RegisteredEvent createEvent(@Valid @RequestBody final EventRegistration registrationData) {
 		// throw new UnsupportedOperationException("not implemented");
+		
+		/*if (registrationData.getDescription().equals(null)||
+				registrationData.getLocation().equals(null)||
+				registrationData.getSeverityLevel().equals(null)){
+				throw new BadRequestException("Neuzpildyta");
+			}*/
 		
 		return repository.create(registrationData);
 		//return null;

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,11 +27,11 @@ public class LibraryReader {
     private String lastName;
 
     @Autowired
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "libraryReader_id")
     private List<LibraryReaderAddress> addresses;
     
-    @ManyToMany(cascade = CascadeType.ALL)
-    //@JsonManagedReference
+    @ManyToMany(mappedBy = "bookReaders")
     private List<Book> borrowedBooks;
 
     public Long getId() {
@@ -77,6 +78,9 @@ public class LibraryReader {
     }
 
     public void addBorrowedBook(Book b) {
-        throw new UnsupportedOperationException();
+        //throw new UnsupportedOperationException();
+    	final ArrayList<Book> borrowedBooks = new ArrayList<>();
+    	borrowedBooks.add(b);
+    	b.getBookReaders().add(this);
     }
 }
