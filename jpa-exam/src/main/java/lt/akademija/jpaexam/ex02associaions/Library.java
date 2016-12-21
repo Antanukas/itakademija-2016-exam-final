@@ -16,56 +16,56 @@ public class Library extends BasicEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+	private Long id;
 
-    /**
-     * Simple name of the library
-     */
-    private String name;
+	/**
+	 * Simple name of the library
+	 */
+	private String name;
 
-    /**
-     * Readers are people registered to particular library.
-     */
-    @OneToMany()
-    @JoinColumn(name="library_id")
-    private List<LibraryReader> readers;
+	/**
+	 * Readers are people registered to particular library.
+	 */
+	@OneToMany()
+	@JoinColumn(name = "library_id")
+	private List<LibraryReader> readers;
 
-    /**
-     * Holds all books that are available to borrow in this library
-     */
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn
-    private List<Book> books;
+	/**
+	 * Holds all books that are available to borrow in this library
+	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn
+	private List<Book> books;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public List<LibraryReader> getReaders() {
-        return readers;
-    }
+	public List<LibraryReader> getReaders() {
+		return readers;
+	}
 
-    public void setReaders(List<LibraryReader> readers) {
-        this.readers = readers;
-    }
+	public void setReaders(List<LibraryReader> readers) {
+		this.readers = readers;
+	}
 
-    public List<Book> getBooks() {
-        return books;
-    }
+	public List<Book> getBooks() {
+		return books;
+	}
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 }

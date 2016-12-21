@@ -10,58 +10,44 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class LibraryReaderAddress {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String street;
-    private String city;
-    private String zipcode;
-    
-  /*  @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "library_reader_id")
-    private LibraryReader libraryReader;*/
-    
+	private Long id;
+	private String street;
+	private String city;
+	private String zipcode;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
-	/*public LibraryReader getLibraryReader() {
-		return libraryReader;
+	public Long getId() {
+		return id;
 	}
 
-	public void setLibraryReader(LibraryReader libraryReader) {
-		this.libraryReader = libraryReader;
-	}*/
-    
-    
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
 }

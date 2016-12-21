@@ -17,6 +17,9 @@ import lt.itakademija.model.RegisteredEventUpdate;
 
 @Repository
 public interface SecurityEventsRepository {
+	
+	
+	RegisteredEvent getEventById(Long id);
 
     /**
      * Returns a list of registered events.

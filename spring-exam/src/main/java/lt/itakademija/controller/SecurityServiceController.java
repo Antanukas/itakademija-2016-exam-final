@@ -42,6 +42,12 @@ public class SecurityServiceController {
 		return repository.getEvents();
 	}
 
+	@RequestMapping(path = "/webapi/events/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "Get event", notes = "returns event by id.")
+	public RegisteredEvent getRegisteredEventsById(@PathVariable Long id) {
+		return repository.getEventById(id);
+	}
+
 	@RequestMapping(path = "/webapi/events", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation(value = "Post event", notes = "Posts new event with registration data")
@@ -58,7 +64,8 @@ public class SecurityServiceController {
 
 	@RequestMapping(path = "/webapi/events/{eventId}", method = RequestMethod.PUT)
 	@ApiOperation(value = "Put event", notes = "Updates event by id")
-	public RegisteredEvent updateEvent(@PathVariable Long eventId, @Valid @RequestBody RegisteredEventUpdate updateData) {
+	public RegisteredEvent updateEvent(@PathVariable Long eventId,
+			@Valid @RequestBody RegisteredEventUpdate updateData) {
 		return repository.update(eventId, updateData);
 	}
 

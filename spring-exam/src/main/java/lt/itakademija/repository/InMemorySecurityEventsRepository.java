@@ -80,4 +80,14 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 		return null;
 	}
 
+	@Override
+	public RegisteredEvent getEventById(Long id) {
+		for (RegisteredEvent registeredEvent : registeredEventList) {
+			if (id.equals(registeredEvent.getId())) {
+				return registeredEvent;
+			}
+		}
+		return null;
+	}
+
 }
