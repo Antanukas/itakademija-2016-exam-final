@@ -23,7 +23,7 @@ import lt.itakademija.repository.SecurityEventsRepository;
 
 @RestController
 @Api(value = "Security controller")
-@RequestMapping("spring-exam/webapi/events/")
+@RequestMapping("spring-exam/webapi/events")
 public class SecurityServiceController {
 
 	@Autowired
@@ -33,8 +33,8 @@ public class SecurityServiceController {
         this.repository = repository;
     }
     
-    @GetMapping
-    @RequestMapping(method = RequestMethod.GET)// 3rd task's addition
+    //@GetMapping
+    @RequestMapping(value="/", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Get all registered events", notes = "Returns a list of all rgistered events with their information.")
     public List<RegisteredEvent> getRegisteredEvents() {
@@ -42,8 +42,8 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
     
-    @PostMapping
-    @RequestMapping(method = RequestMethod.POST)// 3rd task's addition
+    //@PostMapping
+    @RequestMapping(value="/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Adds a new event", notes = "Adds a new event to the current event list.")
     public RegisteredEvent createEvent(@ApiParam(value = "Data of new event", required = true) EventRegistration registrationData) {
@@ -51,8 +51,8 @@ public class SecurityServiceController {
     	//throw new UnsupportedOperationException("not implemented");
     }
     
-    @DeleteMapping
-    @RequestMapping(method = RequestMethod.DELETE)// 3rd task's addition
+    //@DeleteMapping
+    @RequestMapping(value="/", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Deletes a specific event", notes = "Deletes an avent from database based on the supplied event id.")
     public RegisteredEvent deleteEvent(@ApiParam(value = "Event id", required = true) Long id) {
@@ -60,8 +60,8 @@ public class SecurityServiceController {
         //throw new UnsupportedOperationException("not implemented");
     }
     
-    @PutMapping
-    @RequestMapping(method = RequestMethod.PUT)// 3rd task's addition
+    //@PutMapping
+    @RequestMapping(value="/", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "Updates an event", notes = "Updates and event that already exists in the database.")
     public RegisteredEvent updateEvent(@ApiParam(value = "Event id", required = true) Long id, @ApiParam(value = "Data of event to bu updated", required = true) RegisteredEventUpdate updateData) {
