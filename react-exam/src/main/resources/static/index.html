@@ -1,4 +1,6 @@
+
 <html>
+
 <head>
   <title>Knygu parduotuve </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,6 +10,11 @@
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous"
   >
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/react-router@2.8.1/umd/ReactRouter.js"></script>
+    <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         body {
             background-color: #ffea95;
@@ -49,11 +56,7 @@
         }
     </style>
 
-  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
-  <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
-  <script src="https://unpkg.com/react-router@2.8.1/umd/ReactRouter.js"></script>
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 
 </head>
@@ -62,22 +65,21 @@
 
   <script type="text/babel">
 
-//************************************  ADMINISTRATION  ************************
+    //************************************  ADMINISTRATION  ************************
 
-const ProductAdministrationComponent = function(props) {
+    const BookAdministrationComponent = function(props) {
+
 
     var title;
     var saveButton;
     var cancelButton;
     if (props.id) {
-        title = 'Atnaujinamas produktas ' + props.id;
+        title = 'Sukurtas ' + props.id + ' produktas';
     } else {
         title = 'Kuriamas naujas produktas';
         saveButton = <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Issaugoti</button>;
         cancelButton = <Link to="/" ><button className="btn" onClick=""> Atsaukti</button></Link>;
     }
-
-    //TRUKSTA PUBLISHED AT
     return (
             <div>
                 <h2>{title}</h2>
@@ -103,203 +105,205 @@ const ProductAdministrationComponent = function(props) {
                 </form>
             </div>
     );
-};
+    };
 
-
-const ProductAdministrationContainer = React.createClass({
+    const BookAdministrationContainer = React.createClass({
     getInitialState: function() {
         return {
+            book: {
 
-            title: this.props.params.author,
-            author: this.props.params.id,
-            isbn: this.props.params.id,
-            quantity: this.props.params.id,
-            publishedAt: this.props.params.id
+                title: '',
+                author: '',
+                isbn: '',
+                quantity: '',
+            }
         };
     },
 
     handleSaveClick: function(e) {
-        var self = this;
-        var body = {
+    var self = this;
+    var body = {
 
-            title: this.state.title,
-            author: this.state.author,
-            isbn: this.state.isbn,
-            quantity: this.state.quantity,
-            publishedAt: this.state.publishedAt
-        }
-        axios.post('/api/books', body)
-            .then(function (response) {
-                var p = response.data;
-                self.setState({
-                    id: p.id,
-                    title: p.title,
-                    author: p.author,
-                    isbn: p.isbn,
-                    quantity: p.quantity,
-                    publishedAt: p.publishedAt
-                });
-                self.props.router.push('/update' + p.id);
+        title: this.state.title,
+        author: this.state.author,
+        isbn: this.state.isbn,
+        quantity: this.state.quantity,
+        publishedAt: this.state.publishedAt
+    };
+    axios.post('/api/books', body)
+        .then(function (response) {
+            var p = response.data;
+            self.setState({
+                id: p.id,
+                title: p.title,
+                author: p.author,
+                isbn: p.isbn,
+                quantity: p.quantity,
+                publishedAt: p.publishedAt
             });
-        e.preventDefault();
-    },
+            self.props.router.push('/update' + p.id);
+        });
 
+    e.preventDefault();
+    },
     handleTitleChange: function(e) {
-        this.setState({ title: e.target.value });
+    this.setState({ title: e.target.value });
     },
-
     handleAuthorChange: function(e) {
-        this.setState({ author: e.target.value });
+    this.setState({ author: e.target.value });
     },
-
     handleIsbnChange: function(e) {
-        this.setState({ isbn: e.target.value });
+    this.setState({ isbn: e.target.value });
     },
-
     handleQuantityChange: function(e) {
-        this.setState({ quantity: e.target.value });
+    this.setState({ quantity: e.target.value });
     },
 
     render: function() {
+    return (
+            <BookAdministrationComponent
+                    id={this.state.id}
+                    title={this.state.title}
+                    author={this.state.author}
+                    isbn={this.state.isbn}
+                    quantity={this.state.quantity}
+                    onTitleChange={this.handleTitleChange}
+                    onAuthorChange={this.handleAuthorChange}
+                    onIsbnChange={this.handleIsbnChange}
+                    onQuantityChange={this.handleQuantityChange}
+                    onSaveClick={this.handleSaveClick}
+            />
+    );
+    }
+    });
+
+
+    //************************************ BOOK COMPONENTS/CONTAINERS ************************
+
+
+    const BookCardComponent = React.createClass({
+    render: function() {
+      var url = '/update' + this.props.id;
+      return (
+              <div className="col-sm-6 col-md-3">
+                  <div className="thumbnail" >
+                      <div className="caption">
+                          <h3>{this.props.title}</h3>
+                          <p>{this.props.author}</p>
+                          <p>ID = {this.props.id} </p>
+
+                          <Link to={url}>
+                              <p><button className="btn btn-primary" role="button">Atnaujinti</button></p>
+                          </Link>
+                      </div>
+                  </div>
+              </div>
+      );
+    }
+    });
+
+    const BookListComponent = function(props) {
+    const productCards = props.products.map(function (product, index) {
+      return (
+              <BookCardComponent
+                      key={index}
+                      id={product.id}
+                      title={product.title}
+                      author={product.author}
+                      published={product.publishedAt}
+                      quantity={product.quantity}
+                      isbn={product.isbn}
+
+              />
+      );
+    });
+    return (
+          <div className="row">
+              {productCards}</div>
+    );
+    };
+
+    const BookListContainer  = React.createClass({
+    getInitialState: function() {
+      return { products: [] };
+    },
+
+    componentWillMount: function() {
+      const self = this;
+      axios.get('/api/books')
+          .then(function (response) {
+              self.setState({ products: response.data });
+          })
+    },
+
+    render: function() {
+      return <BookListComponent products={this.state.products} />
+    }
+    });
+
+
+    //***********************************************INDEX.xml**************
+    var styles = {
+        notfound: {
+            textAlign: 'center',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            fontSize: 200
+        }};
+    var Router = ReactRouter.Router;
+    var Route = ReactRouter.Route;
+    var IndexRoute = ReactRouter.IndexRoute;
+    var hashHistory = ReactRouter.hashHistory;
+    var IndexLink = ReactRouter.IndexLink;
+    var Link = ReactRouter.Link;
+
+    const BookListPage = function () {
+    return <BookListContainer />
+    };
+
+    const destination = document.querySelector("#container");
+
+
+    const NoPage= React.createClass({
+    render: function() {
         return (
-                <ProductAdministrationComponent
-                        id={this.state.id}
-                        title={this.state.title}
-                        author={this.state.author}
-                        isbn={this.state.isbn}
-                        quantity={this.state.quantity}
-                        onTitleChange={this.handleTitleChange}
-                        onAuthorChange={this.handleAuthorChange}
-                        onIsbnChange={this.handleIsbnChange}
-                        onQuantityChange={this.handleQuantityChange}
-                        onSaveClick={this.handleSaveClick}
-                />
+          <div style={styles.notfound}>404</div>
         );
     }
-});
+    });
 
 
-//************************************ PRODUCTS ************************
+    const App = React.createClass({
+    render: function(props) {
+      return (
+              <div className="col-sm-12 col-md-12">
+                  <h1>Biblioteka</h1>
+                  <ul className="header">
+                      <li><IndexLink to="/" activeClassName="active">Knygu sarasas</IndexLink></li>
+                      <li><Link to="/new-book" activeClassName="active">Sukurti nauja knyga</Link></li>
+                  </ul>
+                  <div className="content">
+                      {this.props.children}
+                  </div>
+              </div>
+      )
+    }
+    });
 
+    //Render
+    ReactDOM.render(
+      <Router>
+          <Route path="/" component={App}>
+              <IndexRoute component={BookListPage}/>
+              <Route path="/new-book" component={BookAdministrationContainer} />
+              <Route path="/update:id" component={BookAdministrationContainer} />
+              <Route path="*" component={NoPage}/>
+          </Route>
+      </Router>,
+    destination
+    );
+    </script>
+    </body>
 
-      const ProductCardComponent = React.createClass({
-          render: function() {
-              var url = '/update' + this.props.id;
-              return (
-                      <div className="col-sm-6 col-md-3">
-                          <div className="thumbnail" >
-                              <div className="caption">
-                                  <h3>{this.props.title}</h3>
-                                  <p>{this.props.author}</p>
-                                  <p>ID = {this.props.id} </p>
-                                  <Link to={url}>
-                                      <p><button className="btn btn-primary" role="button">Atnaujinti</button></p>
-                                  </Link>
-                              </div>
-                          </div>
-                      </div>
-              );
-          }
-      });
+    </html>
 
-      const ProductListComponent = function(props) {
-          const productCards = props.products.map(function (product, index) {
-              return (
-                      <ProductCardComponent
-                              key={index}
-                              id={product.id}
-                              title={product.title}
-                              author={product.author}
-                              published={product.publishedAt}
-                              quantity={product.quantity}
-                              isbn={product.isbn}
-
-                      />
-              );
-          });
-          return (
-                  <div className="row">
-                      {productCards}</div>
-          );
-      };
-
-      const ProductListContainer  = React.createClass({
-          getInitialState: function() {
-              return { products: [] };
-          },
-
-          componentWillMount: function() {
-              const self = this;
-              axios.get('/api/books')
-                  .then(function (response) {
-                      self.setState({ products: response.data });
-                  })
-          },
-
-          render: function() {
-              return <ProductListComponent products={this.state.products} />
-          }
-      });
-
-
-//********************************************************
-
-var Router = ReactRouter.Router;
-var Route = ReactRouter.Route;
-var IndexRoute = ReactRouter.IndexRoute;
-var hashHistory = ReactRouter.hashHistory;
-var IndexLink = ReactRouter.IndexLink;
-var Link = ReactRouter.Link;
-
-      const ProductListPage = function () {
-          return <ProductListContainer />
-      };
-
-      const destination = document.querySelector("#container");
-
-      const Home = React.createClass({
-          render: function() {
-              return (
-                      <div>
-                          <h2>HELLO</h2>
-
-                      </div>
-              );
-          }
-      });
-
-      const App = React.createClass({
-          render: function(props) {
-              return (
-                      <div className="col-sm-12 col-md-12">
-                          <h1>Biblioteka</h1>
-                          <ul className="header">
-                              <li><IndexLink to="/" activeClassName="active">Knygu sarasas</IndexLink></li>
-                              <li><Link to="/new-book" activeClassName="active">Sukurti nauja knyga</Link></li>
-                          </ul>
-                          <div className="content">
-                              {this.props.children}
-                          </div>
-                      </div>
-              )
-          }
-      });
-
-
-      ReactDOM.render(
-              <Router>
-                  <Route path="/" component={App}>
-                      <IndexRoute component={ProductListPage}/>
-                      <Route path="/new-book" component={ProductAdministrationContainer} />
-                      <Route path="/update:id" component={ProductAdministrationContainer} />
-                  </Route>
-              </Router>,
-          destination
-
-      );
-  </script>
-</body>
-
-</html>
-<script type="text/babel" src="/js/index.jsx"></script>
-<script type="text/babel" src="/js/hello_world_component.jsx"></script>

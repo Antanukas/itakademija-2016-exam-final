@@ -2,10 +2,21 @@ package lt.akademija.jpaexam.ex02associaions;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Library {
-
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+	
     /**
      * Simple name of the library
      */
@@ -14,13 +25,21 @@ public class Library {
     /**
      * Readers are people registered to particular library.
      */
+    @OneToMany
+    @JoinColumn(name = "library_id")
     private List<LibraryReader> readers;
 
     /**
      * Holds all books that are available to borrow in this library
      */
+    
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "library_id")
     private List<Book> books;
 
+    /**
+     * Getters/Setters
+     */
     public Long getId() {
         return id;
     }
@@ -28,7 +47,7 @@ public class Library {
     public void setId(Long id) {
         this.id = id;
     }
-
+    
     public List<LibraryReader> getReaders() {
         return readers;
     }
