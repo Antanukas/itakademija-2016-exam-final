@@ -2,72 +2,79 @@ var ProductAdministrationContainer = React.createClass({
     getInitialState: function() {
         return {
             id: this.props.params.id,
-            image: '',
+            isbn: '',
             title: '',
-            description: '',
-            price: 0,
-            quantity: 0
+            author: '',
+            quantity: '',
+            publishedAt: ''
         };
     },
 
     handleSaveClick: function(e) {
         var self = this;
         var body = {
-            image: this.state.image,
+            id: this.state.id,
+            isbn: this.state.isbn,
             title: this.state.title,
-            description: this.state.description,
-            price: this.state.price,
-            quantity: this.state.quantity
+            author: this.state.author,
+            quantity: this.state.quantity,
+            publishedAt:this.state.publishedAt
         }
         axios.post('http://localhost:8080/api/books', body)
             .then(function (response) {
                 var p = response.data;
                 self.setState({
                     id: p.id,
+                    isbn: p.isbn,
                     title: p.title,
                     author: p.author,
-                    price: p.price,
-                    quantity: p.quantity
+                    quantity: p.quantity,
+                    publishedAt: p.publishedAt
                 });
-                self.props.router.push('/admin/products/' + p.id);
+                self.props.router.push('/products');
             });
         e.preventDefault();
+    },
+
+    handleIdChange: function(e) {
+        this.setState({ id: e.target.value });
+    },
+
+    handleIsbnChange: function(e) {
+        this.setState({ isbn: e.target.value });
     },
 
     handleTitleChange: function(e) {
         this.setState({ title: e.target.value });
     },
 
-    handleImageChange: function(e) {
-        this.setState({ image: e.target.value });
-    },
-
-    handleDescriptionChange: function(e) {
-        this.setState({ description: e.target.value });
-    },
-
-    handlePriceChange: function(e) {
-        this.setState({ price: e.target.value });
+    handleAuthorChange: function(e) {
+        this.setState({ author: e.target.value });
     },
 
     handleQuantityChange: function(e) {
         this.setState({ quantity: e.target.value });
     },
 
+    handlePublishedAtChange: function(e) {
+        this.setState({ publishedAt: e.target.value });
+    },
+
     render: function() {
         return (
             <ProductAdministrationComponent
                 id={this.state.id}
-                image={this.state.image}
+                isbn={this.state.isbn}
                 title={this.state.title}
-                description={this.state.description}
-                price={this.state.price}
+                author={this.state.author}
                 quantity={this.state.quantity}
-                onImageChange={this.handleImageChange}
+                publishedAt={this.state.publishedAt}
+                onIdChange={this.handleIdChange}
+                onIsbnChange={this.handleIsbnChange}
                 onTitleChange={this.handleTitleChange}
-                onDescriptionChange={this.handleDescriptionChange}
-                onPriceChange={this.handlePriceChange}
+                onAuthorChange={this.handleAuthorChange}
                 onQuantityChange={this.handleQuantityChange}
+                onPublishedAtChange={this.handlePublishedAtChange}
                 onSaveClick={this.handleSaveClick}
             />
         );

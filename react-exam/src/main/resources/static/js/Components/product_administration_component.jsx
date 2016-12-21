@@ -5,9 +5,12 @@ var ProductAdministrationComponent = function(props) {
     var saveButton;
     if (props.id) {
         title = 'Atnaujinamas produktas ' + props.id;
+        saveButton = <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Save</button>
+
     } else {
         title = 'Kuriamas naujas produktas';
         saveButton = <button className="btn btn-success" style={{ marginRight: '20px' }} onClick={props.onSaveClick}>Save</button>
+
     }
     return (
         <div>
