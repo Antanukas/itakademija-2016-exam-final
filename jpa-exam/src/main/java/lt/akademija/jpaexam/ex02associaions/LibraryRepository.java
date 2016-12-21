@@ -1,15 +1,9 @@
 package lt.akademija.jpaexam.ex02associaions;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
 @Repository
-public class LibraryRepository {
+public class LibraryRepository extends CrudRepository<Library, Long>  {
 
-    public Library saveOrUpdate(Library e) {
-        throw new UnsupportedOperationException();
-    }
-
-    public Library find(Long id) {
-        throw new UnsupportedOperationException();
-    }
 }
