@@ -14,8 +14,7 @@ var BookAdministrationComponent = React.createClass({
       title = 'Pridedama nauja knyga';
       submitButton = <button className="btn btn-success" onClick={this.props.onSaveClick} href="#/">Submit</button>
     };
-    console.log("ADMIN COMPONENT:");
-    console.log(this);
+  
     return (
       <div className='col-sm-4'>
         <h2>{title}</h2>
