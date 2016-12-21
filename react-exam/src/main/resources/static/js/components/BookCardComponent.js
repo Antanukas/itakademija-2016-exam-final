@@ -1,3 +1,4 @@
+var PropTypes = window.React.PropTypes;
 var Link = ReactRouter.Link;
 
 function ProductCardComponent(props) {
@@ -15,5 +16,11 @@ function ProductCardComponent(props) {
         </div>			
 	);
 }
+
+ProductCardComponent.propTypes = {
+	id: PropTypes.number.isRequired,
+	author: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+};
 
 window.ProductCardComponent = ProductCardComponent;

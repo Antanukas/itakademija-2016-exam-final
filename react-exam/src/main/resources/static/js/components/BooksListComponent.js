@@ -1,3 +1,5 @@
+var PropTypes = window.React.PropTypes;
+
 function ProductsListComponent(props) {
 	//console.log(props.products);
 	return (
@@ -6,5 +8,9 @@ function ProductsListComponent(props) {
     </div>
   );	
 }
+
+ProductsListComponent.propTypes = {
+	products: PropTypes.array.isRequired,
+};
 
 window.ProductsListComponent = ProductsListComponent;

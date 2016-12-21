@@ -1,3 +1,5 @@
+var PropTypes = window.React.PropTypes;
+
 function BookFormComponent(props) {
 	return (
 	<div style={{ marginTop: '10vh' }}>
@@ -32,6 +34,20 @@ function BookFormComponent(props) {
 		</form>	
 	</div>
 	);
+};
+
+BookFormComponent.propTypes = {
+		action: PropTypes.string.isRequired,
+		submit: PropTypes.func.isRequired,
+		cancel: PropTypes.func.isRequired,
+		changeTitle: PropTypes.func.isRequired,
+		changeAuthor: PropTypes.func.isRequired,
+		changeQuantity: PropTypes.func.isRequired,
+		changeIsbn: PropTypes.func.isRequired,
+		title: PropTypes.string.isRequired,
+		author: PropTypes.string.isRequired,
+		quantity: PropTypes.number.isRequired,
+		isbn: PropTypes.string.isRequired,
 };
 
 window.BookFormComponent = BookFormComponent;
