@@ -24,6 +24,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <IndexRoute component={BookListContainer} />
       <Route path="/hello-world" component={BookListContainer} />
+      <Route path="/admin" component={BookAdministration} />  
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>

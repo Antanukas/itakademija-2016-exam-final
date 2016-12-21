@@ -37,7 +37,6 @@ var BookListContainer = React.createClass( {
         return { books: [] };
     },
     componentWillMount: function() {
-        console.log( "testas1" );
         var self = this;
         console.log( "testas1.5" );
         axios.get( 'http://localhost:8080/api/books' )
@@ -45,9 +44,7 @@ var BookListContainer = React.createClass( {
                 self.setState( { books: response.data });
                 console.log( response.data );
             })
-            .catch( function( error ) {
-                console.log( error );
-            })
+
     },
     render: function() {
         return <BookListComponent books={this.state.product} />
@@ -58,6 +55,6 @@ var BookListContainer = React.createClass( {
         books: React.PropTypes.array.isRequired,
 }*/
 
-var ComponentList = React.createClass
+
 
 window.BookListContainer = BookListContainer;
