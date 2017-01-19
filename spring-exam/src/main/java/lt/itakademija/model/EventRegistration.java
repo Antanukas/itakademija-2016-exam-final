@@ -2,12 +2,22 @@ package lt.itakademija.model;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 public final class EventRegistration {
 
+	@NotNull
     private SeverityLevel severityLevel;
 
+	@NotBlank
+	@Length(min = 1, max = 100)
     private String location;
 
+	@NotBlank
+	@Length(min = 1, max = 1000)
     private String description;
 
     public SeverityLevel getSeverityLevel() {
