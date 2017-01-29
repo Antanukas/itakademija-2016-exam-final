@@ -3,12 +3,12 @@ package lt.itakademija.repository;
 import lt.itakademija.model.EventRegistration;
 import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
+import lt.itakademija.model.SeverityLevel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,12 +19,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public final class InMemorySecurityEventsRepository implements SecurityEventsRepository {
-	@NotNull
+
 	private final SequenceNumberGenerator sequenceGenerator;
-	@NotNull
+
 	private final DateProvider dateProvider;
 
-	private List<RegisteredEvent> eventsList = new ArrayList<RegisteredEvent>();
+	private List<RegisteredEvent> registeredEvents = new ArrayList<>();
 
 	public InMemorySecurityEventsRepository(SequenceNumberGenerator sequenceGenerator, DateProvider dateProvider) {
 		this.sequenceGenerator = sequenceGenerator;
@@ -39,41 +39,35 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
 	 */
 	@Override
 	public RegisteredEvent create(EventRegistration eventRegistration) {
-		RegisteredEvent newRegisteredEvent = new RegisteredEvent(sequenceGenerator.getNext(),
-				dateProvider.getCurrentDate(), eventRegistration.getSeverityLevel(), eventRegistration.getLocation(),
+		RegisteredEvent event = new RegisteredEvent(sequenceGenerator.getNext(), dateProvider.getCurrentDate(),
+				eventRegistration.getSeverityLevel(), eventRegistration.getLocation(),
 				eventRegistration.getDescription());
-		this.eventsList.add(newRegisteredEvent);
-		return newRegisteredEvent;
+		registeredEvents.add(event);
+		return event;
 	}
 
 	@Override
 	public List<RegisteredEvent> getEvents() {
-		return this.eventsList;
+		return registeredEvents;
 	}
 
 	@Override
 	public RegisteredEvent delete(Long id) {
-		RegisteredEvent delete = null;
-		for (int i = 0; i < eventsList.size(); i++) {
-			if (eventsList.get(i).getId() == id) {
-				delete = eventsList.get(i);
-				eventsList.remove(i);
-			}
-		}
-		return delete;
+		RegisteredEvent deletedEvent = registeredEvents.stream().filter(p -> p.getId().equals(id)).findFirst()
+				.orElseThrow(() -> new RuntimeException());
+		int deleteEventIndex = registeredEvents.indexOf(deletedEvent);
+		registeredEvents.remove(deleteEventIndex);
+		return deletedEvent;
 	}
 
 	@Override
 	public RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate) {
-		RegisteredEvent update = null;
-		for (RegisteredEvent event : eventsList) {
-			if (event.getId() == id) {
-				update = new RegisteredEvent(event.getId(), event.getRegistrationDate(),
-						registeredEventUpdate.getSeverityLevel(), event.getLocation(), event.getDescription());
-				eventsList.set((eventsList.indexOf(event)), update);
-			}
-		}
-		return update;
+		RegisteredEvent eventToUpdate = registeredEvents.stream().filter(p -> p.getId().equals(id)).findFirst()
+				.orElseThrow(() -> new RuntimeException());
+		registeredEventUpdate.getSeverityLevel();
+		RegisteredEvent updatedEvent = new RegisteredEvent(id, eventToUpdate.getRegistrationDate(),
+				registeredEventUpdate.getSeverityLevel(), eventToUpdate.getLocation(), eventToUpdate.getDescription());
+		return updatedEvent;
 	}
 
 }
