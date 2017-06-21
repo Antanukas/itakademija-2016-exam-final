@@ -48,11 +48,31 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
         RegisteredEvent registeredEvent = new RegisteredEvent(sequenceGenerator.getNext(), dateProvider.getCurrentDate(), 
                 eventRegistration.getSeverityLevel(), eventRegistration.getLocation(), 
                 eventRegistration.getDescription());
-        //System.out.println(eventRegistration.toString());
-        //System.out.println(registeredEvent.toString());
-     
         eventList.add(registeredEvent);
         return registeredEvent;
+    }
+
+    @Override
+    public List<RegisteredEvent> getEvents(String location, String description, Date dateFrom, Date dateTill) {
+        List<RegisteredEvent> filteredEvents = new ArrayList<>();
+        for(RegisteredEvent event : eventList){
+            if(location != null && event.getLocation().equals(location)){
+                filteredEvents.add(event);
+            }
+            if(description != null && event.getDescription().equals(description)){
+                filteredEvents.add(event);
+            }
+            if(dateFrom!= null && dateFrom.compareTo(event.getRegistrationDate()) == -1 ){
+                filteredEvents.add(event);
+            }
+            if(dateTill!= null && dateTill.compareTo(event.getRegistrationDate()) == 1 ){
+                filteredEvents.add(event);
+            }
+            if(location== null && description ==null && dateFrom ==null && dateTill == null){
+                return eventList;
+            }
+        }
+        return filteredEvents;
     }
 
     @Override
@@ -77,6 +97,16 @@ public final class InMemorySecurityEventsRepository implements SecurityEventsRep
             if(id.equals(registeredEvent.getId())){
                 registeredEvent.setSeverityLevel(registeredEventUpdate.getSeverityLevel());
                 return registeredEvent;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public RegisteredEvent findById(Long id) {
+        for(RegisteredEvent event:eventList){
+            if(event.getId() == id){
+                return event;
             }
         }
         return null;

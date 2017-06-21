@@ -75,6 +75,10 @@ public class LibraryReader {
     }
 
     public void addBorrowedBook(Book b) {
+          if (borrowedBooks == null) {
+              borrowedBooks = new ArrayList<>();
+          }
         borrowedBooks.add(b);
+        b.addBookReader(this);
     }
 }

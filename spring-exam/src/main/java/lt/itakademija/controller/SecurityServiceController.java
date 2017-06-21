@@ -5,6 +5,7 @@ import lt.itakademija.model.RegisteredEvent;
 import lt.itakademija.model.RegisteredEventUpdate;
 import lt.itakademija.repository.SecurityEventsRepository;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -38,31 +39,35 @@ public class SecurityServiceController {
     public SecurityServiceController(@RequestBody final SecurityEventsRepository repository) {
         this.repository = repository;
     }
+
     @GetMapping()
-    public List<RegisteredEvent> getRegisteredEvents() {
-        return repository.getEvents(); 
+    public List<RegisteredEvent> getRegisteredEvents(@RequestParam(value = "location", required = false) String location,
+                                                     @RequestParam(value = "description", required = false) String description,
+                                                     @RequestParam(value = "dateFrom", required = false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateFrom,
+                                                     @RequestParam(value = "dateTill", required = false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss") Date dateTill) {
+        return repository.getEvents(location, description, dateFrom, dateTill);
     }
-    
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public RegisteredEvent createEvent(@PathVariable  EventRegistration registrationData) {
+    public RegisteredEvent createEvent(@RequestBody  @Valid EventRegistration registrationData) {
         return repository.create(registrationData);
     }
-    
+
     @DeleteMapping("/{eventId}")
-  
-    public RegisteredEvent deleteEvent(@PathVariable Long id) {
-        return repository.delete(id);
+    public RegisteredEvent deleteEvent(@PathVariable Long eventId) {
+        return repository.delete(eventId);
     }
-    
+
     @PutMapping("/{eventId}")
-    public RegisteredEvent updateEvent(@RequestBody Long id, @RequestBody RegisteredEventUpdate updateData) {
-        return repository.update(id, updateData);
+    public RegisteredEvent updateEvent(@PathVariable Long eventId, @RequestBody  @Valid RegisteredEventUpdate updateData) {
+        return repository.update(eventId, updateData);
     }
-   /* @DateTimeFormat("MMddyyyy")
-    @GetMapping(value = "/spring-exam/webapi/events", params={fromDate}, params={toDate}, params)
-    @ResponseBody
-    public List<RegisteredEvent> getRegisteredEventsByDate() {
-        return repository.getEvents(); 
-    }*/
+
+    @GetMapping("/{eventId}")
+    public RegisteredEvent getById(@PathVariable Long eventId){
+        return repository.findById(eventId);
+    }
+
+
 }

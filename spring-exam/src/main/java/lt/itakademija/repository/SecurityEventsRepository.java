@@ -1,5 +1,6 @@
 package lt.itakademija.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -21,6 +22,8 @@ public interface SecurityEventsRepository {
      *
      * @return list of registered events.
      */
+    List<RegisteredEvent> getEvents(String location, String description, Date dateFrom, Date dateTill);
+
     List<RegisteredEvent> getEvents();
 
     /**
@@ -47,5 +50,7 @@ public interface SecurityEventsRepository {
      * @return updated event
      */
     RegisteredEvent update(Long id, RegisteredEventUpdate registeredEventUpdate);
+
+    RegisteredEvent findById(Long id);
 
 }

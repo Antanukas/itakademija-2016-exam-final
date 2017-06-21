@@ -60,4 +60,11 @@ public class Book {
     public void setBookReaders(List<LibraryReader> bookReaders) {
         this.bookReaders = bookReaders;
     }
+
+    public void addBookReader(LibraryReader r){
+        if (bookReaders == null) {
+            bookReaders = new ArrayList<>();
+        }
+        bookReaders.add(r);
+    }
 }
