@@ -182,8 +182,8 @@ public class Ex02Test {
             Book b = new Book();
             r.addBorrowedBook(b);
 
-            assertThat(r.getBorrowedBooks(), hasSize(1));
-            assertThat(b.getBookReaders(), hasSize(1));
+            assertThat("borrowed books", r.getBorrowedBooks(), hasSize(1));
+            assertThat("reader books", b.getBookReaders(), hasSize(1));
             assertThat(r.getBorrowedBooks().get(0), sameInstance(b));
             assertThat(b.getBookReaders().get(0), sameInstance(r));
         });

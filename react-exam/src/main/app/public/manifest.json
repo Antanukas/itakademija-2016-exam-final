@@ -1,0 +1,15 @@
+{
+  "short_name": "Infobalt academy",
+  "name": "First IT academy test",
+  "icons": [
+    {
+      "src": "book-image.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

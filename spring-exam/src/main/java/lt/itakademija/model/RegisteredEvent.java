@@ -1,5 +1,9 @@
 package lt.itakademija.model;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,10 +13,17 @@ public final class RegisteredEvent {
 
     private Date registrationDate;
 
+    @NotNull
     private SeverityLevel severityLevel;
 
+    @NotEmpty
+    @NotNull
+    @Length(max = 100)
     private String location;
 
+    @NotEmpty
+    @NotNull
+    @Length(max = 1000)
     private String description;
 
     public RegisteredEvent() {
@@ -36,6 +47,11 @@ public final class RegisteredEvent {
 
     public Date getRegistrationDate() {
         return registrationDate;
+    }
+    
+    public SeverityLevel setSeverityLevel(SeverityLevel severityLevel){
+        this.severityLevel =severityLevel;
+        return severityLevel;
     }
 
     public SeverityLevel getSeverityLevel() {
